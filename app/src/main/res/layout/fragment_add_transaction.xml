@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.assetmanagement.usecases.transactions_activity.add_transaction.AddTransactionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".usecases.transactions_activity.add_transaction.AddTransactionFragment">
+
+        <include
+            android:id="@+id/loadingAndErrorLayout"
+            layout="@layout/loading_and_error_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:viewModel="@{viewModel}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.isTransactionFieldsVisible() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/asset_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/asset_name"
+                android:text="@={viewModel.addTransactionModel.assetsName}"
+                tools:text="Bitcoin" />
+
+            <EditText
+                android:id="@+id/asset_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/asset_type"
+                android:text='@={viewModel.addTransactionModel.assetType}'
+                tools:text="Cryptocurrency" />
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/quantity"
+                android:inputType="numberDecimal"
+                android:text="@={viewModel.addTransactionModel.quantity}"
+                tools:text="0.02" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/price_bought"
+                android:inputType="numberDecimal"
+                android:text="@={viewModel.addTransactionModel.price}"
+                tools:text="200" />
+
+            <EditText
+                android:id="@+id/currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/currency"
+                android:text="@={viewModel.addTransactionModel.priceCurrency}"
+                tools:text="EUR" />
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/date"
+                android:inputType="date"
+                android:text="@={viewModel.addTransactionModel.date}"
+                tools:text="10/4/2021" />
+
+            <EditText
+                android:id="@+id/transaction_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/transaction_type"
+                android:text="@={viewModel.addTransactionModel.transactionType}"
+                tools:text="Buy" />
+
+            <Spinner
+                android:id="@+id/asset_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/asset_types_array"/>
+
+            <Spinner
+                android:id="@+id/transaction_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/transaction_types_array"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.editTransaction ? @string/update : @string/save}"
+                android:onClick="@{()-> viewModel.saveTransaction()}"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

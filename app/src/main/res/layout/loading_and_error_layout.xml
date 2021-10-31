@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.assetmanagement.utils.LoadingAndErrorViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/loadingView"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoadingViewVisible ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/errorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:onClick="@{()-> viewModel.errorViewClicked()}"
+            android:text="@{viewModel.errorMessage}"
+            android:visibility="@{viewModel.isErrorViewVisible() ? View.VISIBLE : View.GONE}"
+            tools:text="Error Message"
+            tools:visibility="visible" />
+    </FrameLayout>
+</layout>

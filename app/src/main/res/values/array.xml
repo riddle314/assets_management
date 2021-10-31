@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transaction_types_array">
+        <item>BUY</item>
+        <item>SELL</item>
+        <item>DIVIDENT</item>
+    </string-array>
+
+    <string-array name="asset_types_array">
+        <item>CURRENCY</item>
+        <item>STOCK</item>
+        <item>CRYPTO</item>
+    </string-array>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/TransactionsFragment">
+
+    <fragment
+        android:id="@+id/TransactionsFragment"
+        android:name="com.example.assetmanagement.usecases.transactions_activity.transactions.TransactionsFragment"
+        android:label="@string/transactions_title"
+        tools:layout="@layout/fragment_transactions">
+        <action
+            android:id="@+id/action_TransactionsFragment_to_AddTransactionFragment"
+            app:destination="@id/AddTransactionFragment" />
+        <action
+            android:id="@+id/action_TransactionsFragment_to_TransactionDetailsFragment"
+            app:destination="@id/TransactionDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddTransactionFragment"
+        android:name="com.example.assetmanagement.usecases.transactions_activity.add_transaction.AddTransactionFragment"
+        android:label="@string/add_transaction_title"
+        tools:layout="@layout/fragment_add_transaction">
+        <argument
+            android:name="transactionId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_AddTransactionFragment_to_TransactionsFragment"
+            app:destination="@id/TransactionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TransactionDetailsFragment"
+        android:name="com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragment"
+        android:label="@string/transaction_details_title"
+        tools:layout="@layout/transaction_details_fragment">
+        <argument
+            android:name="transactionId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_TransactionDetailsFragment_to_AddTransactionFragment"
+            app:destination="@id/AddTransactionFragment" />
+        <action
+            android:id="@+id/action_TransactionDetailsFragment_to_TransactionsFragment"
+            app:destination="@id/TransactionsFragment" />
+    </fragment>
+
+</navigation>
