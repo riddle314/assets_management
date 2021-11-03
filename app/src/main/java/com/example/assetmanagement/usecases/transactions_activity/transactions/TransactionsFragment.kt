@@ -11,7 +11,7 @@ import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentTransactionsBinding
 import com.example.assetmanagement.usecases.transactions_activity.transactions.adapters.TransactionsAdapter
 import com.example.assetmanagement.usecases.transactions_activity.transactions.model.TransactionItemModel
-import com.example.assetmanagement.utils.Event
+import com.example.assetmanagement.usecases.common.model.Event
 import com.example.assetmanagement.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 

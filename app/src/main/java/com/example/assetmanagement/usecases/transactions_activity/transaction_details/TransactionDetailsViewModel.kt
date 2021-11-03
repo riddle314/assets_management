@@ -5,13 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.assetmanagement.domain.Repository
 import com.example.assetmanagement.domain.di.DataAnalysisRepository
-import com.example.assetmanagement.domain.di.DemoRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.model.TransactionDetailsModel
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.transformers.TransactionsDetailsDataTransformer
-import com.example.assetmanagement.utils.Event
-import com.example.assetmanagement.utils.LoadingAndErrorViewModel
+import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -51,9 +50,7 @@ class TransactionDetailsViewModel @Inject constructor(@DataAnalysisRepository pr
     // decision functions
 
     fun fetchTransactionDetails() {
-        mIsTransactionDetailsVisible.value = false
-        mIsLoadingViewVisible.value = true
-        mIsErrorViewVisible.value = false
+        setLoadingState()
         clearErrorMessage()
         viewModelScope.launch {
             val result = repository.getTransactionDetails(transactionId)
@@ -64,21 +61,18 @@ class TransactionDetailsViewModel @Inject constructor(@DataAnalysisRepository pr
     private fun transactionDetailsResponse(
         result: ResponseDomainModel<TransactionDetailsResponseDomainModel?>
     ) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess && result.responseData != null) {
-            mIsTransactionDetailsVisible.value = true
+            setContentState()
             mTransactionDetails.value =
                 TransactionsDetailsDataTransformer.transform(result.responseData!!)
         } else {
-            mIsErrorViewVisible.value = true
+            setErrorState()
             mErrorMessage.value = result.errorMessage
         }
     }
 
     fun deleteTransaction() {
-        mIsTransactionDetailsVisible.value = false
-        mIsLoadingViewVisible.value = true
-        mIsErrorViewVisible.value = false
+        setLoadingState()
         clearErrorMessage()
         viewModelScope.launch {
             val result = repository.deleteTransaction(transactionId)
@@ -87,11 +81,10 @@ class TransactionDetailsViewModel @Inject constructor(@DataAnalysisRepository pr
     }
 
     private fun deleteTransactionResponse(result: ResponseDomainModel<String?>) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess) {
             mNavigateToTransactions.value = Event(true)
         } else {
-            mIsErrorViewVisible.value = true
+            setErrorState()
             mErrorMessage.value = result.errorMessage
         }
     }
@@ -99,5 +92,23 @@ class TransactionDetailsViewModel @Inject constructor(@DataAnalysisRepository pr
     // helper functions
     override fun errorViewClicked() {
         fetchTransactionDetails()
+    }
+
+    private fun setLoadingState() {
+        mIsTransactionDetailsVisible.value = false
+        mIsLoadingViewVisible.value = true
+        mIsErrorViewVisible.value = false
+    }
+
+    private fun setErrorState() {
+        mIsTransactionDetailsVisible.value = false
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = true
+    }
+
+    private fun setContentState() {
+        mIsTransactionDetailsVisible.value = true
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = false
     }
 }

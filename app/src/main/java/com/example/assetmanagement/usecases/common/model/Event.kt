@@ -1,4 +1,4 @@
-package com.example.assetmanagement.utils
+package com.example.assetmanagement.usecases.common.model
 
 /**
  * Class for events consumption in Live Data

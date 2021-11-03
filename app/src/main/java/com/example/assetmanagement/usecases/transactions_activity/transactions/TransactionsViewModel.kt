@@ -3,22 +3,22 @@ package com.example.assetmanagement.usecases.transactions_activity.transactions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
 import com.example.assetmanagement.domain.Repository
 import com.example.assetmanagement.domain.di.DataAnalysisRepository
+import com.example.assetmanagement.domain.model.ResponseDomainModel
+import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
 import com.example.assetmanagement.usecases.transactions_activity.transactions.model.TransactionItemModel
 import com.example.assetmanagement.usecases.transactions_activity.transactions.transformers.TransactionsDataTransformer
-import com.example.assetmanagement.utils.Event
-import com.example.assetmanagement.utils.LoadingAndErrorViewModel
-import com.example.assetmanagement.domain.model.ResponseDomainModel
-import com.example.assetmanagement.domain.di.DemoRepository
+import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private var repository: Repository): LoadingAndErrorViewModel() {
+class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private var repository: Repository) :
+    LoadingAndErrorViewModel() {
 
     private var mSearchQuery: String = Utils.EMPTY_STRING
 
@@ -37,6 +37,13 @@ class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private 
 
     val isTransactionsListVisible: LiveData<Boolean>
         get() = mIsTransactionsListVisible
+
+    private val mIsNoContentViewVisible: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+
+    val isNoContentViewVisible: LiveData<Boolean>
+        get() = mIsNoContentViewVisible
 
     // data for navigation
 
@@ -64,9 +71,7 @@ class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private 
 
     fun fetchTransactionsForSearchQuery(searchQuery: String) {
         mSearchQuery = searchQuery
-        mIsTransactionsListVisible.value = false
-        mIsLoadingViewVisible.value = true
-        mIsErrorViewVisible.value = false
+        setLoadingState()
         clearErrorMessage()
         viewModelScope.launch {
             val result = if (mSearchQuery.isEmpty()) {
@@ -83,11 +88,15 @@ class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private 
     ) {
         mIsLoadingViewVisible.value = false
         if (result.isSuccess) {
-            mIsTransactionsListVisible.value = true
             mTransactionsList.value =
                 TransactionsDataTransformer.transform(result.responseData)
+            if (mTransactionsList.value.isNullOrEmpty()) {
+                setNoContentState()
+            } else {
+                setContentState()
+            }
         } else {
-            mIsErrorViewVisible.value = true
+            setErrorState()
             mErrorMessage.value = result.errorMessage
         }
     }
@@ -112,5 +121,33 @@ class TransactionsViewModel @Inject constructor(@DataAnalysisRepository private 
         } else {
             Utils.ZERO_NUM
         }
+    }
+
+    private fun setLoadingState() {
+        mIsTransactionsListVisible.value = false
+        mIsNoContentViewVisible.value = false
+        mIsLoadingViewVisible.value = true
+        mIsErrorViewVisible.value = false
+    }
+
+    private fun setErrorState() {
+        mIsTransactionsListVisible.value = false
+        mIsNoContentViewVisible.value = false
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = true
+    }
+
+    private fun setContentState() {
+        mIsTransactionsListVisible.value = true
+        mIsNoContentViewVisible.value = false
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = false
+    }
+
+    private fun setNoContentState() {
+        mIsTransactionsListVisible.value = false
+        mIsNoContentViewVisible.value = true
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = false
     }
 }

@@ -1,6 +1,7 @@
 package com.example.assetmanagement.usecases.transactions_activity.transactions.transformers
 
 import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
+import com.example.assetmanagement.usecases.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactions_activity.transactions.model.TransactionItemModel
 import com.example.assetmanagement.utils.Utils
 
@@ -9,7 +10,7 @@ class TransactionsDataTransformer {
     companion object {
 
         fun transform(transactionItemResponseDomainList: List<TransactionItemResponseDomainModel>): ArrayList<TransactionItemModel> {
-            var transactionItemUIModelList = ArrayList<TransactionItemModel>(0)
+            val transactionItemUIModelList = ArrayList<TransactionItemModel>(0)
             for (transactionItemDomain in transactionItemResponseDomainList) {
                 transactionItemUIModelList.add(transform(transactionItemDomain))
             }
@@ -26,8 +27,8 @@ class TransactionsDataTransformer {
                     transactionItemResponseDomainModel.priceCurrency
                 ),
                 transactionItemResponseDomainModel.date,
-                transactionItemResponseDomainModel.assetType.name,
-                transactionItemResponseDomainModel.transactionType
+                DataTransformers.transformAssetType(transactionItemResponseDomainModel.assetType),
+                DataTransformers.transformTransactionType(transactionItemResponseDomainModel.transactionType)
             )
     }
 

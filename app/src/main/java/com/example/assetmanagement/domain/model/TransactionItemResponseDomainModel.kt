@@ -10,6 +10,6 @@ data class TransactionItemResponseDomainModel(
     val price: Double,
     val priceCurrency: String,
     val date: String,
-    val assetType: AssetType,
-    val transactionType: String
+    val assetType: AssetTypeDomain,
+    val transactionType: TransactionTypeDomain
 )

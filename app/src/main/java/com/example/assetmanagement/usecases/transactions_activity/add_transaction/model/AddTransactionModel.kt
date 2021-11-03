@@ -1,13 +1,16 @@
 package com.example.assetmanagement.usecases.transactions_activity.add_transaction.model
 
+import com.example.assetmanagement.usecases.common.model.AssetTypeModel
+import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
+
 class AddTransactionModel(var transactionId: Int) {
     var assetsName: String = ""
     var quantity: String = ""
     var price: String = ""
     var priceCurrency: String = ""
     var date: String = ""
-    var assetType: String = ""
-    var transactionType: String = ""
+    var assetType: AssetTypeModel = AssetTypeModel.CURRENCY
+    var transactionType: TransactionTypeModel = TransactionTypeModel.BUY
 
     constructor(
         transactionId: Int,
@@ -16,8 +19,8 @@ class AddTransactionModel(var transactionId: Int) {
         price: String,
         priceCurrency: String,
         date: String,
-        assetType: String,
-        transactionType: String
+        assetType: AssetTypeModel,
+        transactionType: TransactionTypeModel
     ) : this(transactionId) {
         this.assetsName = assetsName
         this.quantity = quantity

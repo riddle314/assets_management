@@ -8,12 +8,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentAddTransactionBinding
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragmentArgs
-import com.example.assetmanagement.utils.ConfirmationDialogFragment
-import com.example.assetmanagement.utils.Event
+import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
+import com.example.assetmanagement.usecases.common.model.Event
 import dagger.hilt.android.AndroidEntryPoint
+
+
+import android.widget.ArrayAdapter
+import com.example.assetmanagement.R
+
 
 /**
  * An fragment to add a transaction
@@ -34,6 +38,7 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
     private fun setupUI(view: View) {
         // setup view model
         viewModel.transactionId = args.transactionId
+
         // setup data binding
         binding = FragmentAddTransactionBinding.bind(view)
         binding.viewModel = viewModel
@@ -49,8 +54,24 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
                     getString(R.string.add_transaction_title)
             }
         }
-        viewModel.prefillWithData()
 
+        binding.assetTypeSpinner.adapter = context?.let {
+            ArrayAdapter<String>(
+                it,
+                // do I need to provide the values through viewmodel?
+                R.layout.spinner_item, viewModel.getAssetTypeListOfValues(it)
+            )
+        }
+
+        binding.transactionTypeSpinner.adapter = context?.let {
+            ArrayAdapter<String>(
+                it,
+                // do I need to provide the values through viewmodel?
+                R.layout.spinner_item, viewModel.getTransactionTypeListOfValues(it)
+            )
+        }
+
+        viewModel.loadData()
         setupListenersAndObservers()
     }
 
@@ -80,10 +101,10 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
     }
 
     private fun createValidationDialog() {
-        val deleteConfirmationDialog = ConfirmationDialogFragment()
-        deleteConfirmationDialog.setMessage(getString(R.string.validation_dialog_message))
-        deleteConfirmationDialog.setPositiveButton(getString(R.string.ok))
-        deleteConfirmationDialog.hasNegativeButton(false)
-        deleteConfirmationDialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
+        val validationDialog = ConfirmationDialogFragment()
+        validationDialog.setMessage(getString(R.string.validation_dialog_message))
+        validationDialog.setPositiveButton(getString(R.string.ok))
+        validationDialog.hasNegativeButton(false)
+        validationDialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
     }
 }

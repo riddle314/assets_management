@@ -1,9 +1,9 @@
 package com.example.assetmanagement.usecases.transactions_activity.add_transaction.transformers
 
-import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
-import com.example.assetmanagement.domain.model.AssetType
 import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
+import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
+import com.example.assetmanagement.usecases.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
 
 class AddTransactionDataTransformer {
@@ -18,8 +18,8 @@ class AddTransactionDataTransformer {
                 transactionDetailsResponseDomainModel.price.toString(),
                 transactionDetailsResponseDomainModel.priceCurrency,
                 transactionDetailsResponseDomainModel.date,
-                transactionDetailsResponseDomainModel.assetType.getTypeName(),
-                transactionDetailsResponseDomainModel.transactionType
+                DataTransformers.transformAssetType(transactionDetailsResponseDomainModel.assetType),
+                DataTransformers.transformTransactionType(transactionDetailsResponseDomainModel.transactionType)
             )
 
         fun transformToEditRequest(addTransactionModel: AddTransactionModel) =
@@ -30,8 +30,8 @@ class AddTransactionDataTransformer {
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,
                 addTransactionModel.date,
-                getAssetType(addTransactionModel.assetType),
-                addTransactionModel.transactionType
+                DataTransformers.transformAssetType(addTransactionModel.assetType),
+                DataTransformers.transformTransactionType(addTransactionModel.transactionType)
             )
 
         fun transformToAddRequest(addTransactionModel: AddTransactionModel) =
@@ -41,19 +41,10 @@ class AddTransactionDataTransformer {
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,
                 addTransactionModel.date,
-                getAssetType(addTransactionModel.assetType),
-                addTransactionModel.transactionType
+                DataTransformers.transformAssetType(addTransactionModel.assetType),
+                DataTransformers.transformTransactionType(addTransactionModel.transactionType)
             )
 
-
-        private fun getAssetType(assetType: String): AssetType {
-            for (assetTypeEnum in AssetType.values()) {
-                if (assetTypeEnum.getTypeName() == assetType) {
-                    return assetTypeEnum
-                }
-            }
-            return AssetType.NONE
-        }
 
     }
 

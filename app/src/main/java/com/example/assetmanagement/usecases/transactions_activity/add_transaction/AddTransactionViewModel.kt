@@ -1,5 +1,6 @@
 package com.example.assetmanagement.usecases.transactions_activity.add_transaction
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,8 +10,10 @@ import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.transformers.AddTransactionDataTransformer
-import com.example.assetmanagement.utils.Event
-import com.example.assetmanagement.utils.LoadingAndErrorViewModel
+import com.example.assetmanagement.usecases.common.model.AssetTypeModel
+import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -57,23 +60,19 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
 
     // decision functions
 
-    fun prefillWithData() {
+    fun loadData() {
         if (isEditTransaction()) {
             // fetch transaction info for edit
             fetchTransactionInfo(transactionId)
         } else {
             // create an empty Transaction model
             mAddTransactionModel.value = AddTransactionModel(transactionId)
-            mIsLoadingViewVisible.value = false
-            mIsTransactionFieldsVisible.value = true
-            mIsErrorViewVisible.value = false
+            setContentState()
         }
     }
 
     private fun fetchTransactionInfo(transactionId: Int) {
-        mIsTransactionFieldsVisible.value = false
-        mIsLoadingViewVisible.value = true
-        mIsErrorViewVisible.value = false
+        setLoadingState()
         clearErrorMessage()
         viewModelScope.launch {
             val result = repository.getTransactionDetails(transactionId)
@@ -84,14 +83,13 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
     private fun transactionInfoResponse(
         result: ResponseDomainModel<TransactionDetailsResponseDomainModel?>
     ) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess && result.responseData != null) {
-            mIsTransactionFieldsVisible.value = true
+            setContentState()
             mAddTransactionModel.value =
                 AddTransactionDataTransformer.transformToResponse(result.responseData!!)
         } else {
             onErrorClickedActionLamdaFun = { fetchTransactionInfo(transactionId) }
-            mIsErrorViewVisible.value = true
+            setErrorState()
             mErrorMessage.value = result.errorMessage
         }
     }
@@ -105,10 +103,8 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
     }
 
     fun saveTransaction() {
-        if (dataIsValid(mAddTransactionModel.value)) {
-            mIsTransactionFieldsVisible.value = false
-            mIsLoadingViewVisible.value = true
-            mIsErrorViewVisible.value = false
+        if (isDataValid(mAddTransactionModel.value)) {
+            setLoadingState()
             clearErrorMessage()
             viewModelScope.launch {
                 val result = if (isEditTransaction()) {
@@ -129,28 +125,51 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
         }
     }
 
-    private fun dataIsValid(addTransactionModel: AddTransactionModel?): Boolean {
+    private fun isDataValid(addTransactionModel: AddTransactionModel?): Boolean {
         return addTransactionModel != null
-                && !addTransactionModel.assetsName.isNullOrEmpty()
-                && !addTransactionModel.quantity.isNullOrEmpty()
-                && !addTransactionModel.price.isNullOrEmpty()
-                && !addTransactionModel.priceCurrency.isNullOrEmpty()
-                && !addTransactionModel.date.isNullOrEmpty()
-                && !addTransactionModel.assetType.isNullOrEmpty()
-                && !addTransactionModel.transactionType.isNullOrEmpty()
+                && addTransactionModel.assetsName.isNotEmpty()
+                && addTransactionModel.quantity.isNotEmpty()
+                && addTransactionModel.price.isNotEmpty()
+                && addTransactionModel.priceCurrency.isNotEmpty()
+                && addTransactionModel.date.isNotEmpty()
     }
 
     private fun saveTransactionResponse(
         result: ResponseDomainModel<String?>
     ) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess) {
-            mIsTransactionFieldsVisible.value = true
+            setContentState()
             mNavigateToTransactions.value = Event(true)
         } else {
             onErrorClickedActionLamdaFun = { saveTransaction() }
-            mIsErrorViewVisible.value = true
+            setErrorState()
             mErrorMessage.value = result.errorMessage
         }
+    }
+
+    private fun setLoadingState() {
+        mIsTransactionFieldsVisible.value = false
+        mIsLoadingViewVisible.value = true
+        mIsErrorViewVisible.value = false
+    }
+
+    private fun setErrorState() {
+        mIsTransactionFieldsVisible.value = false
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = true
+    }
+
+    private fun setContentState() {
+        mIsTransactionFieldsVisible.value = true
+        mIsLoadingViewVisible.value = false
+        mIsErrorViewVisible.value = false
+    }
+
+    fun getAssetTypeListOfValues(context: Context): List<String> {
+        return AssetTypeModel.listOfStringValues(context)
+    }
+
+    fun getTransactionTypeListOfValues(context: Context): List<String> {
+        return TransactionTypeModel.listOfStringValues(context)
     }
 }

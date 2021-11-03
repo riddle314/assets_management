@@ -17,7 +17,7 @@ class DataTransformersToEntity {
                 addTransactionRequestDomainModel.priceCurrency,
                 addTransactionRequestDomainModel.date,
                 AssetTypeConverters.convertAssetType(addTransactionRequestDomainModel.assetType),
-                addTransactionRequestDomainModel.transactionType
+                TransactionTypeConverters.convertTransactionType(addTransactionRequestDomainModel.transactionType)
             )
 
 
@@ -32,9 +32,8 @@ class DataTransformersToEntity {
                 editTransactionRequestDomainModel.priceCurrency,
                 editTransactionRequestDomainModel.date,
                 AssetTypeConverters.convertAssetType(editTransactionRequestDomainModel.assetType),
-                editTransactionRequestDomainModel.transactionType
+                TransactionTypeConverters.convertTransactionType(editTransactionRequestDomainModel.transactionType)
             )
-
 
     }
 }

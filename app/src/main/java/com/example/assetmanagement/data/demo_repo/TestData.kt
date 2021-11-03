@@ -1,8 +1,9 @@
 package com.example.assetmanagement.data.demo_repo
 
-import com.example.assetmanagement.domain.model.AssetType
+import com.example.assetmanagement.domain.model.AssetTypeDomain
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
+import com.example.assetmanagement.domain.model.TransactionTypeDomain
 
 class TestData {
     companion object {
@@ -16,8 +17,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -28,8 +29,8 @@ class TestData {
                     21.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -40,8 +41,8 @@ class TestData {
                     22.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -52,8 +53,8 @@ class TestData {
                     25.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -64,8 +65,8 @@ class TestData {
                     29.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -76,8 +77,8 @@ class TestData {
                     26.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -88,8 +89,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.STOCK,
-                    "BUY"
+                    AssetTypeDomain.STOCK,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -100,8 +101,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -112,8 +113,8 @@ class TestData {
                     30.5,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CURRENCY,
-                    "SELL"
+                    AssetTypeDomain.CURRENCY,
+                    TransactionTypeDomain.SELL
                 )
             )
             transactions.add(
@@ -124,8 +125,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -136,8 +137,8 @@ class TestData {
                     21.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -148,8 +149,8 @@ class TestData {
                     22.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -160,8 +161,8 @@ class TestData {
                     25.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -172,8 +173,8 @@ class TestData {
                     29.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -184,8 +185,8 @@ class TestData {
                     26.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -196,8 +197,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.STOCK,
-                    "BUY"
+                    AssetTypeDomain.STOCK,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -208,8 +209,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -220,8 +221,8 @@ class TestData {
                     30.5,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CURRENCY,
-                    "SELL"
+                    AssetTypeDomain.CURRENCY,
+                    TransactionTypeDomain.SELL
                 )
             )
             return transactions
@@ -237,8 +238,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -249,8 +250,8 @@ class TestData {
                     21.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -261,8 +262,8 @@ class TestData {
                     22.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -273,8 +274,8 @@ class TestData {
                     25.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -285,8 +286,8 @@ class TestData {
                     29.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -297,8 +298,8 @@ class TestData {
                     26.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -309,8 +310,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.STOCK,
-                    "BUY"
+                    AssetTypeDomain.STOCK,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -321,8 +322,8 @@ class TestData {
                     20.0,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CRYPTO,
-                    "BUY"
+                    AssetTypeDomain.CRYPTO,
+                    TransactionTypeDomain.BUY
                 )
             )
             transactions.add(
@@ -333,8 +334,8 @@ class TestData {
                     30.5,
                     "EUR",
                     "13/10/2021",
-                    AssetType.CURRENCY,
-                    "SELL"
+                    AssetTypeDomain.CURRENCY,
+                    TransactionTypeDomain.SELL
                 )
             )
             return transactions
@@ -365,8 +366,8 @@ class TestData {
                 0.0,
                 "",
                 "",
-                AssetType.CRYPTO,
-                ""
+                AssetTypeDomain.CRYPTO,
+                TransactionTypeDomain.BUY
             )
         }
     }

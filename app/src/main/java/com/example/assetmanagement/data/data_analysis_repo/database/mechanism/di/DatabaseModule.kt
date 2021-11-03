@@ -20,13 +20,12 @@ object DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         // do I need synchronized?
 //        return synchronized(this) {
-       return     Room.databaseBuilder(
-                context,
-                AppDatabase::class.java,
-           context.getString(R.string.database_name)
-            )
-                .fallbackToDestructiveMigration()
-                .build()
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            context.getString(R.string.database_name)
+        ).fallbackToDestructiveMigration()
+            .build()
 //        }
     }
 

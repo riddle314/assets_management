@@ -8,6 +8,10 @@
 
         <import type="android.view.View" />
 
+        <import type="com.example.assetmanagement.usecases.common.model.AssetTypeModel" />
+
+        <import type="com.example.assetmanagement.usecases.common.model.TransactionTypeModel" />
+
         <variable
             name="viewModel"
             type="com.example.assetmanagement.usecases.transactions_activity.add_transaction.AddTransactionViewModel" />
@@ -46,14 +50,11 @@
                 android:text="@={viewModel.addTransactionModel.assetsName}"
                 tools:text="Bitcoin" />
 
-            <EditText
-                android:id="@+id/asset_type"
+            <Spinner
+                android:id="@+id/asset_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/asset_type"
-                android:text='@={viewModel.addTransactionModel.assetType}'
-                tools:text="Cryptocurrency" />
+                android:selectedItemPosition="@={AssetTypeModel.toPosition(viewModel.addTransactionModel.assetType)}" />
 
             <EditText
                 android:id="@+id/quantity"
@@ -94,33 +95,18 @@
                 android:text="@={viewModel.addTransactionModel.date}"
                 tools:text="10/4/2021" />
 
-            <EditText
-                android:id="@+id/transaction_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/transaction_type"
-                android:text="@={viewModel.addTransactionModel.transactionType}"
-                tools:text="Buy" />
-
-            <Spinner
-                android:id="@+id/asset_type_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/asset_types_array"/>
-
             <Spinner
                 android:id="@+id/transaction_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/transaction_types_array"/>
+                android:selectedItemPosition="@={TransactionTypeModel.toPosition(viewModel.addTransactionModel.transactionType)}" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.editTransaction ? @string/update : @string/save}"
-                android:onClick="@{()-> viewModel.saveTransaction()}"/>
+                android:onClick="@{()-> viewModel.saveTransaction()}"
+                android:text="@{viewModel.editTransaction ? @string/update : @string/save}" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

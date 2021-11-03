@@ -15,7 +15,7 @@ data class TransactionDetailsEntity(
     @ColumnInfo(name = "priceCurrency") val priceCurrency: String,
     @ColumnInfo(name = "date") val date: String,
     @ColumnInfo(name = "assetType") val assetType: Int,
-    @ColumnInfo(name = "transactionType") val transactionType: String
+    @ColumnInfo(name = "transactionType") val transactionType: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "transaction_id")
@@ -29,7 +29,7 @@ data class TransactionDetailsEntity(
         priceCurrency: String,
         date: String,
         assetType: Int,
-        transactionType: String
+        transactionType: Int
     ) : this(assetsName, quantity, price, priceCurrency, date, assetType, transactionType) {
         this.transactionId = transactionId
     }

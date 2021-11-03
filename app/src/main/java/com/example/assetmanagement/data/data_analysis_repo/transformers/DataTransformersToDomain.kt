@@ -29,7 +29,7 @@ class DataTransformersToDomain {
                 transactionDetailsEntity.priceCurrency,
                 transactionDetailsEntity.date,
                 AssetTypeConverters.getAssetType(transactionDetailsEntity.assetType),
-                transactionDetailsEntity.transactionType
+                TransactionTypeConverters.getTransactionType(transactionDetailsEntity.transactionType)
             )
 
         fun transformToTransactionDetailsDomainModel(transactionDetailsEntity: TransactionDetailsEntity?): TransactionDetailsResponseDomainModel? {
@@ -42,7 +42,7 @@ class DataTransformersToDomain {
                     transactionDetailsEntity.priceCurrency,
                     transactionDetailsEntity.date,
                     AssetTypeConverters.getAssetType(transactionDetailsEntity.assetType),
-                    transactionDetailsEntity.transactionType
+                    TransactionTypeConverters.getTransactionType(transactionDetailsEntity.transactionType)
                 )
             } else {
                 null

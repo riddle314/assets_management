@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.TransactionDetailsFragmentBinding
-import com.example.assetmanagement.utils.ConfirmationDialogFragment
-import com.example.assetmanagement.utils.Event
+import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
+import com.example.assetmanagement.usecases.common.model.Event
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
