@@ -20,10 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TransactionDetailsFragment : Fragment(R.layout.transaction_details_fragment) {
 
-    companion object {
-        fun newInstance() = TransactionDetailsFragment()
-    }
-
     private val viewModel: TransactionDetailsViewModel by viewModels()
     private lateinit var binding: TransactionDetailsFragmentBinding
 

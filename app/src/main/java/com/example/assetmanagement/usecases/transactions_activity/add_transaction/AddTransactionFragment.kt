@@ -1,22 +1,25 @@
 package com.example.assetmanagement.usecases.transactions_activity.add_transaction
 
+
+import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentAddTransactionBinding
-import com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragmentArgs
 import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
 import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
-
-
-import android.widget.ArrayAdapter
-import com.example.assetmanagement.R
+import java.util.*
 
 
 /**
@@ -53,12 +56,12 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
                 appCompatActivity.supportActionBar?.title =
                     getString(R.string.add_transaction_title)
             }
+
         }
 
         binding.assetTypeSpinner.adapter = context?.let {
             ArrayAdapter<String>(
                 it,
-                // do I need to provide the values through viewmodel?
                 R.layout.spinner_item, viewModel.getAssetTypeListOfValues(it)
             )
         }
@@ -66,7 +69,6 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
         binding.transactionTypeSpinner.adapter = context?.let {
             ArrayAdapter<String>(
                 it,
-                // do I need to provide the values through viewmodel?
                 R.layout.spinner_item, viewModel.getTransactionTypeListOfValues(it)
             )
         }
@@ -91,8 +93,20 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
             }
         }
         viewModel.openValidationDialog.observe(viewLifecycleOwner, openValidationDialogObserver)
-    }
 
+        val openDatePickerDialogObserver = Observer<Event<Long>> {
+            if (!it.isEventHandled) {
+                it.getDataAndHandleEvent()
+                openDatePickerDialog(it.getDataAndHandleEvent())
+            }
+        }
+        viewModel.openDatePickerDialog.observe(viewLifecycleOwner, openDatePickerDialogObserver)
+
+        // Handle the back button and up button event
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
+            createBackConfirmationDialog()
+        }
+    }
 
     private fun navigateToTransactionsScreen() {
         val action =
@@ -107,4 +121,48 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
         validationDialog.hasNegativeButton(false)
         validationDialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
     }
+
+    private fun openDatePickerDialog(date: Long) {
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = date
+
+        val onDateSetListener: DatePickerDialog.OnDateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+                viewModel.updateDate(calendar.timeInMillis)
+            }
+
+        context?.let {
+            DatePickerDialog(
+                it,
+                onDateSetListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun createBackConfirmationDialog() {
+        val backConfirmationDialogPositiveListener: ConfirmationDialogFragment.PositiveListener =
+            object : ConfirmationDialogFragment.PositiveListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    findNavController().navigateUp()
+                }
+            }
+
+        val message: String = if (viewModel.isEditTransaction()) {
+            getString(R.string.cancel_edit_transaction)
+        } else {
+            getString(R.string.cancel_add_transaction)
+        }
+        val backConfirmationDialog = ConfirmationDialogFragment()
+        backConfirmationDialog.setMessage(message)
+        backConfirmationDialog.setPositiveButton(getString(R.string.ok))
+        backConfirmationDialog.setPositiveButtonListener(backConfirmationDialogPositiveListener)
+        backConfirmationDialog.setNegativeButton(getString(R.string.cancel))
+        backConfirmationDialog.hasNegativeButton(true)
+        backConfirmationDialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
+    }
+
 }

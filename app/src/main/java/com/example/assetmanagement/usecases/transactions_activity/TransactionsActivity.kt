@@ -29,7 +29,9 @@ class TransactionsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+        onBackPressed()
+        return true
     }
 
 }

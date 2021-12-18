@@ -8,6 +8,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.example.assetmanagement.utils.Utils" />
+
         <import type="com.example.assetmanagement.usecases.common.model.AssetTypeModel" />
 
         <import type="com.example.assetmanagement.usecases.common.model.TransactionTypeModel" />
@@ -48,12 +50,16 @@
                 android:ems="10"
                 android:hint="@string/asset_name"
                 android:text="@={viewModel.addTransactionModel.assetsName}"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 tools:text="Bitcoin" />
 
             <Spinner
                 android:id="@+id/asset_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 android:selectedItemPosition="@={AssetTypeModel.toPosition(viewModel.addTransactionModel.assetType)}" />
 
             <EditText
@@ -64,6 +70,8 @@
                 android:hint="@string/quantity"
                 android:inputType="numberDecimal"
                 android:text="@={viewModel.addTransactionModel.quantity}"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 tools:text="0.02" />
 
             <EditText
@@ -74,6 +82,8 @@
                 android:hint="@string/price_bought"
                 android:inputType="numberDecimal"
                 android:text="@={viewModel.addTransactionModel.price}"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 tools:text="200" />
 
             <EditText
@@ -83,22 +93,58 @@
                 android:ems="10"
                 android:hint="@string/currency"
                 android:text="@={viewModel.addTransactionModel.priceCurrency}"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 tools:text="EUR" />
 
-            <EditText
-                android:id="@+id/date"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/date_button_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/date"
-                android:inputType="date"
-                android:text="@={viewModel.addTransactionModel.date}"
-                tools:text="10/4/2021" />
+                android:onClick="@{()-> viewModel.openDatePicker()}"
+                android:minHeight="@dimen/field_min_height"
+                android:paddingRight="@dimen/large_padding"
+                android:paddingLeft="@dimen/large_padding">
+
+                <TextView
+                    android:id="@+id/date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:paddingTop="@dimen/large_padding"
+                    android:paddingBottom="@dimen/large_padding"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/date_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/date_label"
+                    android:text='@{viewModel.dateOfTransaction}'
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/button_indicator"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="10/4/2021" />
+
+                <ImageView
+                    android:id="@+id/button_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_send" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Spinner
                 android:id="@+id/transaction_type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/field_min_height"
+                android:padding="@dimen/large_padding"
                 android:selectedItemPosition="@={TransactionTypeModel.toPosition(viewModel.addTransactionModel.transactionType)}" />
 
             <Button
@@ -106,6 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{()-> viewModel.saveTransaction()}"
+                android:minHeight="@dimen/field_min_height"
+                android:layout_margin="@dimen/large_padding"
                 android:text="@{viewModel.editTransaction ? @string/update : @string/save}" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,9 +7,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="add_transaction">Add Transaction</string>
 
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
     <string name="delete_confirmation">Delete Transaction?</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="delete_button_description">Delete Button</string>
     <string name="validation_dialog_message">Please fill correctly all the fields, before proceed.</string>
 
@@ -39,4 +39,8 @@
     <string name="buy">Buy</string>
     <string name="sell">Sell</string>
     <string name="dividend">Dividend</string>
+
+    <string name="search_hint">Search Transactions</string>
+    <string name="cancel_add_transaction">Do you want to cancel the add of the transaction?</string>
+    <string name="cancel_edit_transaction">Do you want to cancel the edit of the transaction?</string>
 </resources>

@@ -21,15 +21,17 @@
         android:layout_height="wrap_content"
         android:onClick="@{()-> viewModel.transactionDetailsButtonClicked(viewModel.transactionsList.get(position).transactionId)}"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/padding"
-        android:paddingBottom="@dimen/padding">
+        android:paddingStart="@dimen/large_padding"
+        android:paddingEnd="@dimen/large_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding">
 
         <TextView
             android:id="@+id/transaction_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/padding"
-            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding"
             android:text="@{viewModel.transactionsList.get(position).transactionType.getName(context)}"
             tools:text="BUY" />
 
@@ -37,8 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/padding"
-            android:paddingEnd="@dimen/padding">
+            android:paddingStart="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding">
 
             <TextView
                 android:id="@+id/quantity"
@@ -69,8 +71,8 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/padding"
-            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding"
             android:text="@{viewModel.transactionsList.get(position).assetsName}"
             tools:text="Bitcoin" />
 
@@ -78,8 +80,8 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/padding"
-            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding"
             android:text="@{viewModel.transactionsList.get(position).price}"
             tools:text="100 EUR" />
     </LinearLayout>

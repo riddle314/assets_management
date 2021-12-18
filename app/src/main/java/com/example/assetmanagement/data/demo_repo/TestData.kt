@@ -13,10 +13,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     1,
                     "assetName1",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -25,10 +25,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     2,
                     "assetName2",
-                    "quantity1",
+                    0.023,
                     21.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -37,10 +37,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     3,
                     "assetName3",
-                    "quantity1",
+                    0.023,
                     22.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -49,10 +49,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     4,
                     "assetName4",
-                    "quantity1",
+                    0.023,
                     25.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -61,10 +61,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     5,
                     "assetName5",
-                    "quantity1",
+                    0.023,
                     29.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -73,10 +73,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     6,
                     "assetName6",
-                    "0.005",
+                    0.005,
                     26.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -85,10 +85,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     7,
                     "assetName7",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.STOCK,
                     TransactionTypeDomain.BUY
                 )
@@ -97,10 +97,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     8,
                     "assetName8",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -109,10 +109,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     9,
                     "assetName9",
-                    "quantity1",
+                    0.023,
                     30.5,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CURRENCY,
                     TransactionTypeDomain.SELL
                 )
@@ -121,10 +121,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     1,
                     "assetName1",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -133,10 +133,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     2,
                     "assetName2",
-                    "quantity1",
+                    0.023,
                     21.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -145,10 +145,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     3,
                     "assetName3",
-                    "quantity1",
+                    0.023,
                     22.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -157,10 +157,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     4,
                     "assetName4",
-                    "quantity1",
+                    0.023,
                     25.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -169,10 +169,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     5,
                     "assetName5",
-                    "quantity1",
+                    0.023,
                     29.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -181,10 +181,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     6,
                     "assetName6",
-                    "0.005",
+                    0.005,
                     26.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -193,10 +193,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     7,
                     "assetName7",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.STOCK,
                     TransactionTypeDomain.BUY
                 )
@@ -205,10 +205,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     8,
                     "assetName8",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -217,10 +217,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     9,
                     "assetName9",
-                    "quantity1",
+                    0.023,
                     30.5,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CURRENCY,
                     TransactionTypeDomain.SELL
                 )
@@ -234,10 +234,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     1,
                     "assetName1",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -246,10 +246,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     2,
                     "assetName2",
-                    "quantity1",
+                    0.023,
                     21.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -258,10 +258,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     3,
                     "assetName3",
-                    "quantity1",
+                    0.023,
                     22.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -270,10 +270,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     4,
                     "assetName4",
-                    "quantity1",
+                    0.023,
                     25.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -282,10 +282,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     5,
                     "assetName5",
-                    "quantity1",
+                    0.023,
                     29.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -294,10 +294,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     6,
                     "assetName6",
-                    "0.005",
+                    0.005,
                     26.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -306,10 +306,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     7,
                     "assetName7",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.STOCK,
                     TransactionTypeDomain.BUY
                 )
@@ -318,10 +318,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     8,
                     "assetName8",
-                    "quantity1",
+                    0.023,
                     20.0,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CRYPTO,
                     TransactionTypeDomain.BUY
                 )
@@ -330,10 +330,10 @@ class TestData {
                 TransactionItemResponseDomainModel(
                     9,
                     "assetName9",
-                    "quantity1",
+                    0.023,
                     30.5,
                     "EUR",
-                    "13/10/2021",
+                    1638120473231,
                     AssetTypeDomain.CURRENCY,
                     TransactionTypeDomain.SELL
                 )
@@ -362,10 +362,10 @@ class TestData {
             return TransactionDetailsResponseDomainModel(
                 0,
                 "",
-                "",
+                0.0,
                 0.0,
                 "",
-                "",
+                0,
                 AssetTypeDomain.CRYPTO,
                 TransactionTypeDomain.BUY
             )

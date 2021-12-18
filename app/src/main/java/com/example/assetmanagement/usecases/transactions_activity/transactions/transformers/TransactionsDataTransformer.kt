@@ -21,12 +21,12 @@ class TransactionsDataTransformer {
             TransactionItemModel(
                 transactionItemResponseDomainModel.transactionId,
                 transactionItemResponseDomainModel.assetsName,
-                transactionItemResponseDomainModel.quantity,
+                transactionItemResponseDomainModel.quantity.toString(),
                 Utils.getFormattedPrice(
                     transactionItemResponseDomainModel.price,
                     transactionItemResponseDomainModel.priceCurrency
                 ),
-                transactionItemResponseDomainModel.date,
+                Utils.getDateToString(transactionItemResponseDomainModel.date),
                 DataTransformers.transformAssetType(transactionItemResponseDomainModel.assetType),
                 DataTransformers.transformTransactionType(transactionItemResponseDomainModel.transactionType)
             )

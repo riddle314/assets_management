@@ -5,6 +5,7 @@ import com.example.assetmanagement.domain.model.EditTransactionRequestDomainMode
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.usecases.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
+import com.example.assetmanagement.utils.Utils
 
 class AddTransactionDataTransformer {
 
@@ -14,7 +15,7 @@ class AddTransactionDataTransformer {
             AddTransactionModel(
                 transactionDetailsResponseDomainModel.transactionId,
                 transactionDetailsResponseDomainModel.assetsName,
-                transactionDetailsResponseDomainModel.quantity,
+                transactionDetailsResponseDomainModel.quantity.toString(),
                 transactionDetailsResponseDomainModel.price.toString(),
                 transactionDetailsResponseDomainModel.priceCurrency,
                 transactionDetailsResponseDomainModel.date,
@@ -26,7 +27,7 @@ class AddTransactionDataTransformer {
             EditTransactionRequestDomainModel(
                 addTransactionModel.transactionId,
                 addTransactionModel.assetsName,
-                addTransactionModel.quantity,
+                addTransactionModel.quantity.toDouble(),
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,
                 addTransactionModel.date,
@@ -37,7 +38,7 @@ class AddTransactionDataTransformer {
         fun transformToAddRequest(addTransactionModel: AddTransactionModel) =
             AddTransactionRequestDomainModel(
                 addTransactionModel.assetsName,
-                addTransactionModel.quantity,
+                addTransactionModel.quantity.toDouble(),
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,
                 addTransactionModel.date,

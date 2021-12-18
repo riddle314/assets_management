@@ -8,7 +8,7 @@ class AddTransactionModel(var transactionId: Int) {
     var quantity: String = ""
     var price: String = ""
     var priceCurrency: String = ""
-    var date: String = ""
+    var date: Long = 0
     var assetType: AssetTypeModel = AssetTypeModel.CURRENCY
     var transactionType: TransactionTypeModel = TransactionTypeModel.BUY
 
@@ -18,7 +18,7 @@ class AddTransactionModel(var transactionId: Int) {
         quantity: String,
         price: String,
         priceCurrency: String,
-        date: String,
+        date: Long,
         assetType: AssetTypeModel,
         transactionType: TransactionTypeModel
     ) : this(transactionId) {

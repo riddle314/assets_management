@@ -2,6 +2,7 @@ package com.example.assetmanagement.usecases.transactions_activity.transactions
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -9,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentTransactionsBinding
+import com.example.assetmanagement.usecases.common.model.Event
 import com.example.assetmanagement.usecases.transactions_activity.transactions.adapters.TransactionsAdapter
 import com.example.assetmanagement.usecases.transactions_activity.transactions.model.TransactionItemModel
-import com.example.assetmanagement.usecases.common.model.Event
 import com.example.assetmanagement.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,25 +23,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
-    companion object {
-        fun newInstance() = TransactionsFragment()
-    }
-
     private lateinit var binding: FragmentTransactionsBinding
     private lateinit var adapter: TransactionsAdapter
 
     private val viewModel: TransactionsViewModel by viewModels()
 
-
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        val root = inflater.inflate(R.layout.fragment_transactions, container, false)
-//        setupUI(root)
-//        return root
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -113,6 +100,12 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
             viewLifecycleOwner,
             navigateToTransactionDetailsObserver
         )
+
+        // Handle the back button and up button event
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
+            //empty callback for back press
+        }
+
     }
 
     private fun updateTransactionsList() {

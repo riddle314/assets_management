@@ -10,10 +10,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "transactions_table")
 data class TransactionDetailsEntity(
     @ColumnInfo(name = "assets_name") val assetsName: String,
-    @ColumnInfo(name = "quantity") val quantity: String,
+    @ColumnInfo(name = "quantity") val quantity: Double,
     @ColumnInfo(name = "price") val price: Double,
     @ColumnInfo(name = "priceCurrency") val priceCurrency: String,
-    @ColumnInfo(name = "date") val date: String,
+    @ColumnInfo(name = "date") val date: Long,
     @ColumnInfo(name = "assetType") val assetType: Int,
     @ColumnInfo(name = "transactionType") val transactionType: Int
 ) {
@@ -24,10 +24,10 @@ data class TransactionDetailsEntity(
     constructor(
         transactionId: Int,
         assetsName: String,
-        quantity: String,
+        quantity: Double,
         price: Double,
         priceCurrency: String,
-        date: String,
+        date: Long,
         assetType: Int,
         transactionType: Int
     ) : this(assetsName, quantity, price, priceCurrency, date, assetType, transactionType) {

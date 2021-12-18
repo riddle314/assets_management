@@ -8,22 +8,28 @@ import com.example.assetmanagement.domain.Repository
 import com.example.assetmanagement.domain.di.DataAnalysisRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
-import com.example.assetmanagement.usecases.transactions_activity.add_transaction.transformers.AddTransactionDataTransformer
+import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.usecases.common.model.AssetTypeModel
 import com.example.assetmanagement.usecases.common.model.Event
-import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
+import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
+import com.example.assetmanagement.usecases.transactions_activity.add_transaction.transformers.AddTransactionDataTransformer
+import com.example.assetmanagement.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository private var repository: Repository) :
     LoadingAndErrorViewModel() {
 
+    companion object {
+        private const val DEFAULT_VALUE = -1
+    }
+
     // data for presentation
-    var transactionId: Int = -1
+    var transactionId: Int = DEFAULT_VALUE
 
     private val mAddTransactionModel: MutableLiveData<AddTransactionModel> by lazy {
         MutableLiveData<AddTransactionModel>()
@@ -38,6 +44,13 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
 
     val isTransactionFieldsVisible: LiveData<Boolean>
         get() = mIsTransactionFieldsVisible
+
+    private val mDateOfTransaction: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
+    val dateOfTransaction: LiveData<String>
+        get() = mDateOfTransaction
 
     // data for navigation
 
@@ -55,6 +68,13 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
     val navigateToTransactions: LiveData<Event<Boolean>>
         get() = mNavigateToTransactions
 
+    private val mOpenDatePickerDialog: MutableLiveData<Event<Long>> by lazy {
+        MutableLiveData<Event<Long>>()
+    }
+
+    val openDatePickerDialog: LiveData<Event<Long>>
+        get() = mOpenDatePickerDialog
+
     // lamda function to decide the action after the error clicked
     private lateinit var onErrorClickedActionLamdaFun: () -> Unit
 
@@ -65,8 +85,9 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
             // fetch transaction info for edit
             fetchTransactionInfo(transactionId)
         } else {
-            // create an empty Transaction model
+            // create an empty Transaction model and set the default day to today
             mAddTransactionModel.value = AddTransactionModel(transactionId)
+            updateDate(Calendar.getInstance().timeInMillis)
             setContentState()
         }
     }
@@ -87,6 +108,7 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
             setContentState()
             mAddTransactionModel.value =
                 AddTransactionDataTransformer.transformToResponse(result.responseData!!)
+            updateDate(mAddTransactionModel.value!!.date)
         } else {
             onErrorClickedActionLamdaFun = { fetchTransactionInfo(transactionId) }
             setErrorState()
@@ -99,29 +121,29 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
     }
 
     fun isEditTransaction(): Boolean {
-        return transactionId != -1
+        return transactionId != DEFAULT_VALUE
     }
 
     fun saveTransaction() {
-        if (isDataValid(mAddTransactionModel.value)) {
-            setLoadingState()
-            clearErrorMessage()
-            viewModelScope.launch {
-                val result = if (isEditTransaction()) {
-                    repository.editTransaction(
-                        AddTransactionDataTransformer.transformToEditRequest(addTransactionModel.value!!)
-                    )
-                } else {
-                    repository.addTransaction(
-                        AddTransactionDataTransformer.transformToAddRequest(
-                            addTransactionModel.value!!
+        mAddTransactionModel.value?.let {
+            if (isDataValid(it)) {
+                setLoadingState()
+                clearErrorMessage()
+                viewModelScope.launch {
+                    val result = if (isEditTransaction()) {
+                        repository.editTransaction(
+                            AddTransactionDataTransformer.transformToEditRequest(it)
                         )
-                    )
+                    } else {
+                        repository.addTransaction(
+                            AddTransactionDataTransformer.transformToAddRequest(it)
+                        )
+                    }
+                    saveTransactionResponse(result)
                 }
-                saveTransactionResponse(result)
+            } else {
+                mOpenValidationDialog.value = Event(true)
             }
-        } else {
-            mOpenValidationDialog.value = Event(true)
         }
     }
 
@@ -131,7 +153,6 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
                 && addTransactionModel.quantity.isNotEmpty()
                 && addTransactionModel.price.isNotEmpty()
                 && addTransactionModel.priceCurrency.isNotEmpty()
-                && addTransactionModel.date.isNotEmpty()
     }
 
     private fun saveTransactionResponse(
@@ -144,6 +165,12 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
             onErrorClickedActionLamdaFun = { saveTransaction() }
             setErrorState()
             mErrorMessage.value = result.errorMessage
+        }
+    }
+
+    fun openDatePicker() {
+        mAddTransactionModel.value?.let {
+            mOpenDatePickerDialog.value = Event(it.date)
         }
     }
 
@@ -171,5 +198,12 @@ class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository privat
 
     fun getTransactionTypeListOfValues(context: Context): List<String> {
         return TransactionTypeModel.listOfStringValues(context)
+    }
+
+    fun updateDate(milliseconds: Long) {
+        mAddTransactionModel.value?.let {
+            it.date = milliseconds
+            mDateOfTransaction.value = Utils.getDateToString(milliseconds)
+        }
     }
 }
