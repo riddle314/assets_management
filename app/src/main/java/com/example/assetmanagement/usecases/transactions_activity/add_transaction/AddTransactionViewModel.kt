@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.assetmanagement.domain.Repository
-import com.example.assetmanagement.domain.di.DataAnalysisRepository
+import com.example.assetmanagement.domain.DomainRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
@@ -21,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTransactionViewModel @Inject constructor(@DataAnalysisRepository private var repository: Repository) :
+class AddTransactionViewModel @Inject constructor(private var repository: DomainRepository) :
     LoadingAndErrorViewModel() {
 
     companion object {

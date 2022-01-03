@@ -1,7 +1,6 @@
 package com.example.assetmanagement.data.data_analysis_repo.transformers
 
-import com.example.assetmanagement.domain.model.AssetTypeDomain
-import com.example.assetmanagement.domain.model.TransactionTypeDomain
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionTypeData
 
 class TransactionTypeConverters {
 
@@ -11,20 +10,20 @@ class TransactionTypeConverters {
         private const val SELL = 2
         private const val DIVIDEND = 3
 
-        fun getTransactionType(transactionType: Int): TransactionTypeDomain {
+        fun getTransactionType(transactionType: Int): TransactionTypeData {
             return when (transactionType) {
-                BUY -> TransactionTypeDomain.BUY
-                SELL -> TransactionTypeDomain.SELL
-                else -> TransactionTypeDomain.DIVIDEND
+                BUY -> TransactionTypeData.BUY
+                SELL -> TransactionTypeData.SELL
+                else -> TransactionTypeData.DIVIDEND
             }
         }
 
 
-        fun convertTransactionType(transactionType: TransactionTypeDomain): Int {
+        fun convertTransactionType(transactionType: TransactionTypeData): Int {
             return when (transactionType) {
-                TransactionTypeDomain.BUY -> BUY
-                TransactionTypeDomain.SELL -> SELL
-                TransactionTypeDomain.DIVIDEND -> DIVIDEND
+                TransactionTypeData.BUY -> BUY
+                TransactionTypeData.SELL -> SELL
+                TransactionTypeData.DIVIDEND -> DIVIDEND
             }
         }
 

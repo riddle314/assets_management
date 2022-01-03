@@ -2,7 +2,7 @@ package com.example.assetmanagement.domain
 
 import com.example.assetmanagement.domain.model.*
 
-interface Repository {
+interface DomainRepository {
 
     suspend fun getAllTransactions(): ResponseDomainModel<List<TransactionItemResponseDomainModel>>
 

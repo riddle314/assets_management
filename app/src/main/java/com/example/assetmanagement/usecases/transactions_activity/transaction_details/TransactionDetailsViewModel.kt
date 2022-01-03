@@ -3,20 +3,19 @@ package com.example.assetmanagement.usecases.transactions_activity.transaction_d
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.assetmanagement.domain.Repository
-import com.example.assetmanagement.domain.di.DataAnalysisRepository
+import com.example.assetmanagement.domain.DomainRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
+import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.usecases.common.model.Event
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.model.TransactionDetailsModel
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.transformers.TransactionsDetailsDataTransformer
-import com.example.assetmanagement.usecases.common.model.Event
-import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TransactionDetailsViewModel @Inject constructor(@DataAnalysisRepository private var repository: Repository) :
+class TransactionDetailsViewModel @Inject constructor(private var repository: DomainRepository) :
     LoadingAndErrorViewModel() {
 
     // data for presentation

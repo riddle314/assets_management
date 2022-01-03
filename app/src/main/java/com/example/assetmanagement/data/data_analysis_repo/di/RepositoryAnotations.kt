@@ -1,4 +1,4 @@
-package com.example.assetmanagement.domain.di
+package com.example.assetmanagement.data.data_analysis_repo.di
 
 import javax.inject.Qualifier
 

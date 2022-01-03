@@ -1,15 +1,15 @@
 package com.example.assetmanagement.data.data_analysis_repo.transformers
 
-import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionDetailsResponseDataModel
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionItemResponseDataModel
 import com.example.assetmanagement.data.data_analysis_repo.database.mechanism.transactions_table.TransactionDetailsEntity
 
-class DataTransformersToDomain {
+class EntityToDataTransformers {
 
     companion object {
 
-        fun transform(transactionDetailsEntityList: List<TransactionDetailsEntity>): ArrayList<TransactionItemResponseDomainModel> {
-            var transactionItemDomainModelList = ArrayList<TransactionItemResponseDomainModel>(0)
+        fun transform(transactionDetailsEntityList: List<TransactionDetailsEntity>): ArrayList<TransactionItemResponseDataModel> {
+            var transactionItemDomainModelList = ArrayList<TransactionItemResponseDataModel>(0)
             for (transactionDetailsEntity in transactionDetailsEntityList) {
                 transactionItemDomainModelList.add(
                     transformToTransactionItemDomainModel(
@@ -21,7 +21,7 @@ class DataTransformersToDomain {
         }
 
         fun transformToTransactionItemDomainModel(transactionDetailsEntity: TransactionDetailsEntity) =
-            TransactionItemResponseDomainModel(
+            TransactionItemResponseDataModel(
                 transactionDetailsEntity.transactionId,
                 transactionDetailsEntity.assetsName,
                 transactionDetailsEntity.quantity,
@@ -32,9 +32,9 @@ class DataTransformersToDomain {
                 TransactionTypeConverters.getTransactionType(transactionDetailsEntity.transactionType)
             )
 
-        fun transformToTransactionDetailsDomainModel(transactionDetailsEntity: TransactionDetailsEntity?): TransactionDetailsResponseDomainModel? {
+        fun transformToTransactionDetailsDomainModel(transactionDetailsEntity: TransactionDetailsEntity?): TransactionDetailsResponseDataModel? {
             return if (transactionDetailsEntity != null) {
-                TransactionDetailsResponseDomainModel(
+                TransactionDetailsResponseDataModel(
                     transactionDetailsEntity.transactionId,
                     transactionDetailsEntity.assetsName,
                     transactionDetailsEntity.quantity,

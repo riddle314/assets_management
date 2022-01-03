@@ -1,352 +1,352 @@
 package com.example.assetmanagement.data.demo_repo
 
-import com.example.assetmanagement.domain.model.AssetTypeDomain
-import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
-import com.example.assetmanagement.domain.model.TransactionTypeDomain
+import com.example.assetmanagement.data.data_analysis_repo.model.AssetTypeData
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionDetailsResponseDataModel
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionItemResponseDataModel
+import com.example.assetmanagement.data.data_analysis_repo.model.TransactionTypeData
 
 class TestData {
     companion object {
-        fun getTestData(): ArrayList<TransactionItemResponseDomainModel> {
-            val transactions = ArrayList<TransactionItemResponseDomainModel>()
+        fun getTestData(): ArrayList<TransactionItemResponseDataModel> {
+            val transactions = ArrayList<TransactionItemResponseDataModel>()
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     1,
                     "assetName1",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     2,
                     "assetName2",
                     0.023,
                     21.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     3,
                     "assetName3",
                     0.023,
                     22.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     4,
                     "assetName4",
                     0.023,
                     25.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     5,
                     "assetName5",
                     0.023,
                     29.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     6,
                     "assetName6",
                     0.005,
                     26.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     7,
                     "assetName7",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.STOCK,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.STOCK,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     8,
                     "assetName8",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     9,
                     "assetName9",
                     0.023,
                     30.5,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CURRENCY,
-                    TransactionTypeDomain.SELL
+                    AssetTypeData.CURRENCY,
+                    TransactionTypeData.SELL
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     1,
                     "assetName1",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     2,
                     "assetName2",
                     0.023,
                     21.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     3,
                     "assetName3",
                     0.023,
                     22.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     4,
                     "assetName4",
                     0.023,
                     25.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     5,
                     "assetName5",
                     0.023,
                     29.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     6,
                     "assetName6",
                     0.005,
                     26.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     7,
                     "assetName7",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.STOCK,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.STOCK,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     8,
                     "assetName8",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     9,
                     "assetName9",
                     0.023,
                     30.5,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CURRENCY,
-                    TransactionTypeDomain.SELL
+                    AssetTypeData.CURRENCY,
+                    TransactionTypeData.SELL
                 )
             )
             return transactions
         }
 
-        fun getTestDataForSearchQuery(): ArrayList<TransactionItemResponseDomainModel> {
-            val transactions = ArrayList<TransactionItemResponseDomainModel>()
+        fun getTestDataForSearchQuery(): ArrayList<TransactionItemResponseDataModel> {
+            val transactions = ArrayList<TransactionItemResponseDataModel>()
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     1,
                     "assetName1",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     2,
                     "assetName2",
                     0.023,
                     21.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     3,
                     "assetName3",
                     0.023,
                     22.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     4,
                     "assetName4",
                     0.023,
                     25.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     5,
                     "assetName5",
                     0.023,
                     29.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     6,
                     "assetName6",
                     0.005,
                     26.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     7,
                     "assetName7",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.STOCK,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.STOCK,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     8,
                     "assetName8",
                     0.023,
                     20.0,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CRYPTO,
-                    TransactionTypeDomain.BUY
+                    AssetTypeData.CRYPTO,
+                    TransactionTypeData.BUY
                 )
             )
             transactions.add(
-                TransactionItemResponseDomainModel(
+                TransactionItemResponseDataModel(
                     9,
                     "assetName9",
                     0.023,
                     30.5,
                     "EUR",
                     1638120473231,
-                    AssetTypeDomain.CURRENCY,
-                    TransactionTypeDomain.SELL
+                    AssetTypeData.CURRENCY,
+                    TransactionTypeData.SELL
                 )
             )
             return transactions
         }
 
-        fun getTransactionDetailsTestData(transactionId: Int): TransactionDetailsResponseDomainModel {
+        fun getTransactionDetailsTestData(transactionId: Int): TransactionDetailsResponseDataModel {
             val data = getTestData()
             if (!data.isNullOrEmpty()) {
                 for (transactionItem in data) {
                     if (transactionId.equals(transactionItem.transactionId)) {
-                        return TransactionDetailsResponseDomainModel(
+                        return TransactionDetailsResponseDataModel(
                             transactionItem.transactionId,
                             transactionItem.assetsName,
                             transactionItem.quantity,
@@ -359,15 +359,15 @@ class TestData {
                     }
                 }
             }
-            return TransactionDetailsResponseDomainModel(
+            return TransactionDetailsResponseDataModel(
                 0,
                 "",
                 0.0,
                 0.0,
                 "",
                 0,
-                AssetTypeDomain.CRYPTO,
-                TransactionTypeDomain.BUY
+                AssetTypeData.CRYPTO,
+                TransactionTypeData.BUY
             )
         }
     }

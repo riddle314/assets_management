@@ -1,9 +1,9 @@
 package com.example.assetmanagement.data.data_analysis_repo
 
 import android.content.Context
+import com.example.assetmanagement.data.DataRepository
 import com.example.assetmanagement.data.data_analysis_repo.database.DatabaseService
-import com.example.assetmanagement.domain.Repository
-import com.example.assetmanagement.domain.model.*
+import com.example.assetmanagement.data.data_analysis_repo.model.*
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -14,7 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(@ApplicationContext context: Context) : Repository {
+class DataRepositoryImpl @Inject constructor(@ApplicationContext context: Context) :
+    DataRepository {
 
     @InstallIn(SingletonComponent::class)
     @EntryPoint
@@ -32,38 +33,38 @@ class RepositoryImpl @Inject constructor(@ApplicationContext context: Context) :
 //    private var networkService: NetworkService
 //    private var analysisService: AnalysisService
 
-    override suspend fun getAllTransactions(): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {
+    override suspend fun getAllTransactions(): ResponseDataModel<List<TransactionItemResponseDataModel>> {
         return changeExecutionThread(Dispatchers.IO) {
             dataBaseService.getAllTransactions()
         }
     }
 
-    override suspend fun getTransactionsForQuery(query: String): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {
+    override suspend fun getTransactionsForQuery(query: String): ResponseDataModel<List<TransactionItemResponseDataModel>> {
         return changeExecutionThread(Dispatchers.IO) { dataBaseService.getTransactionsForQuery(query) }
     }
 
-    override suspend fun getTransactionDetails(transactionId: Int): ResponseDomainModel<TransactionDetailsResponseDomainModel?> {
+    override suspend fun getTransactionDetails(transactionId: Int): ResponseDataModel<TransactionDetailsResponseDataModel?> {
         return changeExecutionThread(Dispatchers.IO) {
             dataBaseService.getTransaction(transactionId)
         }
     }
 
-    override suspend fun addTransaction(addTransactionRequestDomainModel: AddTransactionRequestDomainModel): ResponseDomainModel<String?> {
+    override suspend fun addTransaction(addTransactionRequestDataModel: AddTransactionRequestDataModel): ResponseDataModel<String?> {
         return changeExecutionThread(Dispatchers.IO) {
             dataBaseService.addTransaction(
-                addTransactionRequestDomainModel
+                addTransactionRequestDataModel
             )
         }
     }
 
-    override suspend fun editTransaction(editTransactionRequestDomainModel: EditTransactionRequestDomainModel): ResponseDomainModel<String?> {
+    override suspend fun editTransaction(editTransactionRequestDataModel: EditTransactionRequestDataModel): ResponseDataModel<String?> {
         return changeExecutionThread(Dispatchers.IO) {
-            dataBaseService.editTransaction(editTransactionRequestDomainModel)
+            dataBaseService.editTransaction(editTransactionRequestDataModel)
         }
 
     }
 
-    override suspend fun deleteTransaction(transactionId: Int): ResponseDomainModel<String?> {
+    override suspend fun deleteTransaction(transactionId: Int): ResponseDataModel<String?> {
         return changeExecutionThread(Dispatchers.IO) {
             dataBaseService.deleteTransaction(transactionId)
         }
@@ -72,8 +73,8 @@ class RepositoryImpl @Inject constructor(@ApplicationContext context: Context) :
     // suspend inline function to change thread and execute
     private suspend inline fun <T> changeExecutionThread(
         dispatcher: CoroutineDispatcher,
-        crossinline action: () -> ResponseDomainModel<T>
-    ): ResponseDomainModel<T> {
+        crossinline action: () -> ResponseDataModel<T>
+    ): ResponseDataModel<T> {
         return withContext(dispatcher) {
             action()
         }

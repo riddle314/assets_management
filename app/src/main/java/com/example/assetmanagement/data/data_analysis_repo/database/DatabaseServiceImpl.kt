@@ -3,9 +3,9 @@ package com.example.assetmanagement.data.data_analysis_repo.database
 import android.content.Context
 import com.example.assetmanagement.R
 import com.example.assetmanagement.data.data_analysis_repo.database.mechanism.AppDatabase
-import com.example.assetmanagement.data.data_analysis_repo.transformers.DataTransformersToDomain
-import com.example.assetmanagement.data.data_analysis_repo.transformers.DataTransformersToEntity
-import com.example.assetmanagement.domain.model.*
+import com.example.assetmanagement.data.data_analysis_repo.model.*
+import com.example.assetmanagement.data.data_analysis_repo.transformers.EntityToDataTransformers
+import com.example.assetmanagement.data.data_analysis_repo.transformers.DataToEntityTransformers
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -27,69 +27,69 @@ class DatabaseServiceImpl @Inject constructor(@ApplicationContext private val co
         DatabaseServiceImplEntryPoint::class.java
     ).getDatabase()
 
-    override fun getAllTransactions(): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {
+    override fun getAllTransactions(): ResponseDataModel<List<TransactionItemResponseDataModel>> {
         return try {
-            val result = DataTransformersToDomain.transform(
+            val result = EntityToDataTransformers.transform(
                 database.transactionDetailsDao().getAllTransactions()
             )
-            ResponseDomainModel(result, true, null)
+            ResponseDataModel(result, true, null)
         } catch (e: Exception) {
-            ResponseDomainModel(ArrayList(0), false, getError(e, context))
+            ResponseDataModel(ArrayList(0), false, getError(e, context))
         }
     }
 
-    override fun getTransactionsForQuery(query: String): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {
+    override fun getTransactionsForQuery(query: String): ResponseDataModel<List<TransactionItemResponseDataModel>> {
         return try {
-            val result = DataTransformersToDomain.transform(
+            val result = EntityToDataTransformers.transform(
                 database.transactionDetailsDao().getTransactionsForQuery(query)
             )
-            ResponseDomainModel(result, true, null)
+            ResponseDataModel(result, true, null)
         } catch (e: Exception) {
-            ResponseDomainModel(ArrayList(0), false, getError(e, context))
+            ResponseDataModel(ArrayList(0), false, getError(e, context))
         }
     }
 
-    override fun getTransaction(transactionId: Int): ResponseDomainModel<TransactionDetailsResponseDomainModel?> {
+    override fun getTransaction(transactionId: Int): ResponseDataModel<TransactionDetailsResponseDataModel?> {
         return try {
-            val result = DataTransformersToDomain.transformToTransactionDetailsDomainModel(
+            val result = EntityToDataTransformers.transformToTransactionDetailsDomainModel(
                 database.transactionDetailsDao().getTransaction(transactionId)
             )
-            ResponseDomainModel(
+            ResponseDataModel(
                 result, true, null
             )
         } catch (e: Exception) {
-            ResponseDomainModel(null, false, getError(e, context))
+            ResponseDataModel(null, false, getError(e, context))
         }
     }
 
-    override fun addTransaction(addTransactionRequestDomainModel: AddTransactionRequestDomainModel): ResponseDomainModel<String?> {
+    override fun addTransaction(addTransactionRequestDataModel: AddTransactionRequestDataModel): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().addTransaction(
-                DataTransformersToEntity.transformToTransactionDetailsEntity(addTransactionRequestDomainModel)
+                DataToEntityTransformers.transformToTransactionDetailsEntity(addTransactionRequestDataModel)
             )
-            ResponseDomainModel(context.getString(R.string.success), true, null)
+            ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
-            ResponseDomainModel(null, false, getError(e, context))
+            ResponseDataModel(null, false, getError(e, context))
         }
     }
 
-    override fun editTransaction(editTransactionRequestDomainModel: EditTransactionRequestDomainModel): ResponseDomainModel<String?> {
+    override fun editTransaction(editTransactionRequestDataModel: EditTransactionRequestDataModel): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().editTransaction(
-                DataTransformersToEntity.transformToTransactionDetailsEntity(editTransactionRequestDomainModel)
+                DataToEntityTransformers.transformToTransactionDetailsEntity(editTransactionRequestDataModel)
             )
-            ResponseDomainModel(context.getString(R.string.success), true, null)
+            ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
-            ResponseDomainModel(null, false, getError(e, context))
+            ResponseDataModel(null, false, getError(e, context))
         }
     }
 
-    override fun deleteTransaction(transactionId: Int): ResponseDomainModel<String?> {
+    override fun deleteTransaction(transactionId: Int): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().deleteTransaction(transactionId)
-            ResponseDomainModel(context.getString(R.string.success), true, null)
+            ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
-            ResponseDomainModel(null, false, getError(e, context))
+            ResponseDataModel(null, false, getError(e, context))
         }
     }
 
@@ -100,12 +100,12 @@ class DatabaseServiceImpl @Inject constructor(@ApplicationContext private val co
     inline fun <T> makeActionWithErrorHandling(
         context: Context,
         errorResponseData: T?,
-        action: () -> ResponseDomainModel<T?>
-    ): ResponseDomainModel<T?> {
+        action: () -> ResponseDataModel<T?>
+    ): ResponseDataModel<T?> {
         return try {
             action()
         } catch (e: Exception) {
-            ResponseDomainModel(errorResponseData, false, getError(e, context))
+            ResponseDataModel(errorResponseData, false, getError(e, context))
         }
     }
 }
