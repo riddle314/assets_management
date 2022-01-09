@@ -1,17 +1,16 @@
 package com.example.assetmanagement.domain
 
-import com.example.assetmanagement.data.DataRepository
-import com.example.assetmanagement.data.data_analysis_repo.di.DataAnalysisRepository
-import com.example.assetmanagement.data.data_analysis_repo.model.ResponseDataModel
-import com.example.assetmanagement.data.data_analysis_repo.model.TransactionDetailsResponseDataModel
-import com.example.assetmanagement.data.data_analysis_repo.model.TransactionItemResponseDataModel
 import com.example.assetmanagement.domain.model.*
 import com.example.assetmanagement.domain.transformers.DataToDomainTransformers
 import com.example.assetmanagement.domain.transformers.DomainToDataTransformers
+import com.example.repo.DataRepository
+import com.example.repo.model.ResponseDataModel
+import com.example.repo.model.TransactionDetailsResponseDataModel
+import com.example.repo.model.TransactionItemResponseDataModel
 import javax.inject.Inject
 
 class DomainRepositoryImpl @Inject constructor(
-    @DataAnalysisRepository var dataRepository: DataRepository
+    var dataRepository: DataRepository
 ) : DomainRepository {
 
     override suspend fun getAllTransactions(): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {
@@ -83,7 +82,8 @@ class DomainRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteTransaction(transactionId: Int): ResponseDomainModel<String?> {
-        val response: ResponseDataModel<String?> = dataRepository.deleteTransaction(transactionId)
+        val response: ResponseDataModel<String?> =
+            dataRepository.deleteTransaction(transactionId)
 
         return ResponseDomainModel(
             response.responseData,

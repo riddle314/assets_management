@@ -24,8 +24,6 @@
     <string name="save">Save</string>
 
 
-    <string name="success">Success</string>
-    <string name="general_error">Something went wrong.</string>
     <string name="asset_name">Asset Name</string>
     <string name="asset_type">Asset Type</string>
     <string name="quantity">Quantity</string>

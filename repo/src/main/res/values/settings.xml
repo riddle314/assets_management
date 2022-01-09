@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="database_name" translatable="false">AssetManagementDatabase.db</string>
+    <bool name="is_demo_enabled">false</bool>
+    <integer name="demo_time_delay_ms">2000</integer>
+</resources>

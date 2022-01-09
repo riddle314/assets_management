@@ -1,13 +1,13 @@
 package com.example.assetmanagement.domain.transformers
 
-import com.example.assetmanagement.data.data_analysis_repo.model.AddTransactionRequestDataModel
-import com.example.assetmanagement.data.data_analysis_repo.model.AssetTypeData
-import com.example.assetmanagement.data.data_analysis_repo.model.EditTransactionRequestDataModel
-import com.example.assetmanagement.data.data_analysis_repo.model.TransactionTypeData
 import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.AssetTypeDomain
 import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.TransactionTypeDomain
+import com.example.repo.model.AddTransactionRequestDataModel
+import com.example.repo.model.AssetTypeData
+import com.example.repo.model.EditTransactionRequestDataModel
+import com.example.repo.model.TransactionTypeData
 
 class DomainToDataTransformers {
 
