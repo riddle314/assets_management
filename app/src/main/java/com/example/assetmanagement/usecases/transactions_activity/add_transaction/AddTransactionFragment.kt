@@ -127,7 +127,7 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
         calendar.timeInMillis = date
 
         val onDateSetListener: DatePickerDialog.OnDateSetListener =
-            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 calendar.set(year, month, dayOfMonth)
                 viewModel.updateDate(calendar.timeInMillis)
             }

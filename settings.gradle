@@ -1,3 +1,0 @@
-include ':app'
-rootProject.name = "Asset Management"
-include ':repo'
