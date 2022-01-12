@@ -5,6 +5,4 @@ object ProjectConfig {
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"
 
-    // Projects Name
-    const val PROJECT_NAME = "Asset Management"
 }
