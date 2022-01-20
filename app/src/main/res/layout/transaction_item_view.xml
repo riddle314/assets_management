@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -22,8 +21,8 @@
         android:onClick="@{()-> viewModel.transactionDetailsButtonClicked(viewModel.transactionsList.get(position).transactionId)}"
         android:orientation="horizontal"
         android:paddingStart="@dimen/large_padding"
-        android:paddingEnd="@dimen/large_padding"
         android:paddingTop="@dimen/small_padding"
+        android:paddingEnd="@dimen/large_padding"
         android:paddingBottom="@dimen/small_padding">
 
         <TextView
@@ -33,56 +32,104 @@
             android:paddingStart="@dimen/small_padding"
             android:paddingEnd="@dimen/small_padding"
             android:text="@{viewModel.transactionsList.get(position).transactionType.getName(context)}"
+            android:textStyle="bold"
             tools:text="BUY" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/small_padding"
-            android:paddingEnd="@dimen/small_padding">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/quantity"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.transactionsList.get(position).quantity}"
-                tools:text="0.0424" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@{viewModel.transactionsList.get(position).quantity}"
+                    tools:text="0.0424" />
 
-            <TextView
-                android:id="@+id/asset_type"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@{viewModel.transactionsList.get(position).assetsName}"
+                    android:textStyle="bold"
+                    tools:text="Bitcoin" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@string/for_keyword" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@{viewModel.transactionsList.get(position).price}"
+                    android:textStyle="bold"
+                    tools:text="100 EUR" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.transactionsList.get(position).assetType.getName(context)}"
-                tools:text="Crypto" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/asset_type_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@string/asset_type_label" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/asset_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@{viewModel.transactionsList.get(position).assetType.getName(context)}"
+                    android:textStyle="bold"
+                    tools:text="Crypto" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.transactionsList.get(position).date}"
-                tools:text="15/10/2021" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/date_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@string/date_label" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/small_padding"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:text="@{viewModel.transactionsList.get(position).date}"
+                    android:textStyle="bold"
+                    tools:text="15/10/2021" />
+            </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/small_padding"
-            android:paddingEnd="@dimen/small_padding"
-            android:text="@{viewModel.transactionsList.get(position).assetsName}"
-            tools:text="Bitcoin" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/small_padding"
-            android:paddingEnd="@dimen/small_padding"
-            android:text="@{viewModel.transactionsList.get(position).price}"
-            tools:text="100 EUR" />
     </LinearLayout>
 </layout>

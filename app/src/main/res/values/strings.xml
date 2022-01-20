@@ -27,7 +27,7 @@
     <string name="asset_name">Asset Name</string>
     <string name="asset_type">Asset Type</string>
     <string name="quantity">Quantity</string>
-    <string name="price_bought">Price Bought</string>
+    <string name="price">Price</string>
     <string name="currency">Currency</string>
     <string name="date">Date</string>
     <string name="transaction_type">Transaction Type</string>
@@ -41,4 +41,7 @@
     <string name="search_hint">Search Transactions</string>
     <string name="cancel_add_transaction">Do you want to cancel the add of the transaction?</string>
     <string name="cancel_edit_transaction">Do you want to cancel the edit of the transaction?</string>
+    <string name="for_keyword">for</string>
+    <string name="date_label">Date:</string>
+    <string name="asset_type_label">Asset Type:</string>
 </resources>
