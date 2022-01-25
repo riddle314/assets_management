@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -16,14 +17,20 @@ import androidx.navigation.fragment.navArgs
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentAddTransactionBinding
 import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
+import com.example.assetmanagement.usecases.common.model.AssetTypeModel
 import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AssetModel
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.SelectionListFragment
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SearchTypeModel
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SelectionListInputModel
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SelectionListResultModel
 import com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
 /**
- * An fragment to add a transaction
+ * A fragment to add a transaction
  */
 @AndroidEntryPoint
 class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
@@ -56,16 +63,32 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
                 appCompatActivity.supportActionBar?.title =
                     getString(R.string.add_transaction_title)
             }
-
         }
 
+        // setup asset type spinner
         binding.assetTypeSpinner.adapter = context?.let {
             ArrayAdapter<String>(
                 it,
                 R.layout.spinner_item, viewModel.getAssetTypeListOfValues(it)
             )
         }
+        binding.assetTypeSpinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.updateAssetType(position)
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        // setup transaction type spinner
         binding.transactionTypeSpinner.adapter = context?.let {
             ArrayAdapter<String>(
                 it,
@@ -73,8 +96,8 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
             )
         }
 
-        viewModel.loadData()
         setupListenersAndObservers()
+        viewModel.firstTimeLoadData()
     }
 
     private fun setupListenersAndObservers() {
@@ -96,11 +119,40 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
 
         val openDatePickerDialogObserver = Observer<Event<Long>> {
             if (!it.isEventHandled) {
-                it.getDataAndHandleEvent()
                 openDatePickerDialog(it.getDataAndHandleEvent())
             }
         }
         viewModel.openDatePickerDialog.observe(viewLifecycleOwner, openDatePickerDialogObserver)
+
+        // open the SelectionListFragment
+        val openSelectionListFragmentObserver = Observer<Event<SelectionListInputModel>> {
+            if (!it.isEventHandled) {
+                openSearchListFragment(it.getDataAndHandleEvent())
+            }
+        }
+        viewModel.openSelectionList.observe(
+            viewLifecycleOwner,
+            openSelectionListFragmentObserver
+        )
+
+        // handle the result from the SearchListFragment
+        parentFragmentManager.setFragmentResultListener(SelectionListFragment.RESULT_REQUEST_KEY,
+            this,
+            { requestKey, result ->
+                result.getParcelable<SelectionListResultModel>(AddTransactionViewModel.SELECT_CURRENCY_BUNDLE_KEY)
+                    ?.let { viewModel.updateCurrency(it.name) }
+
+                result.getParcelable<SelectionListResultModel>(AddTransactionViewModel.SELECT_ASSET_NAME_BUNDLE_KEY)
+                    ?.let {
+                        val assetTypeModel = when (it.searchTypeModel) {
+                            SearchTypeModel.CRYPTO -> AssetTypeModel.CRYPTO
+                            SearchTypeModel.CURRENCY -> AssetTypeModel.CURRENCY
+                            SearchTypeModel.STOCK -> AssetTypeModel.STOCK
+                        }
+                        viewModel.updateAssetName(AssetModel(it.name, assetTypeModel))
+                    }
+            }
+        )
 
         // Handle the back button and up button event
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
@@ -163,6 +215,15 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
         backConfirmationDialog.setNegativeButton(getString(R.string.cancel))
         backConfirmationDialog.hasNegativeButton(true)
         backConfirmationDialog.show(childFragmentManager, ConfirmationDialogFragment.TAG)
+    }
+
+    // navigate to SearchListFragment
+    private fun openSearchListFragment(selectionListInputModel: SelectionListInputModel) {
+        val action =
+            AddTransactionFragmentDirections.actionAddTransactionFragmentToSelectionListFragment(
+                selectionListInputModel
+            )
+        findNavController().navigate(action)
     }
 
 }

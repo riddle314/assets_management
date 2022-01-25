@@ -4,7 +4,7 @@ import com.example.assetmanagement.usecases.common.model.AssetTypeModel
 import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
 
 class AddTransactionModel(var transactionId: Int) {
-    var assetsName: String = ""
+    var assetModel: AssetModel = AssetModel("", AssetTypeModel.CURRENCY)
     var quantity: String = ""
     var price: String = ""
     var priceCurrency: String = ""
@@ -14,7 +14,7 @@ class AddTransactionModel(var transactionId: Int) {
 
     constructor(
         transactionId: Int,
-        assetsName: String,
+        assetModel: AssetModel,
         quantity: String,
         price: String,
         priceCurrency: String,
@@ -22,7 +22,7 @@ class AddTransactionModel(var transactionId: Int) {
         assetType: AssetTypeModel,
         transactionType: TransactionTypeModel
     ) : this(transactionId) {
-        this.assetsName = assetsName
+        this.assetModel = assetModel
         this.quantity = quantity
         this.price = price
         this.priceCurrency = priceCurrency

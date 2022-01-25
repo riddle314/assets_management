@@ -1,38 +1,58 @@
 package com.example.repo.transformers
 
-import com.example.repo.database.mechanism.transactions_table.TransactionDetailsEntity
+import com.example.repo.database.mechanism.tables.CurrencyEntity
+import com.example.repo.database.mechanism.tables.TransactionDetailsEntity
 import com.example.repo.model.AddTransactionRequestDataModel
 import com.example.repo.model.EditTransactionRequestDataModel
+import com.example.repo.model.SelectionListResultDataModel
 
 class DataToEntityTransformers {
 
     companion object {
         fun transformToTransactionDetailsEntity(
-            addTransactionRequestDataModel: AddTransactionRequestDataModel
+            source: AddTransactionRequestDataModel
         ) =
             TransactionDetailsEntity(
-                addTransactionRequestDataModel.assetsName,
-                addTransactionRequestDataModel.quantity,
-                addTransactionRequestDataModel.price,
-                addTransactionRequestDataModel.priceCurrency,
-                addTransactionRequestDataModel.date,
-                AssetTypeConverters.convertAssetType(addTransactionRequestDataModel.assetType),
-                TransactionTypeConverters.convertTransactionType(addTransactionRequestDataModel.transactionType)
+                source.assetsName,
+                source.quantity,
+                source.price,
+                source.priceCurrency,
+                source.date,
+                AssetTypeConverters.convertAssetType(source.assetType),
+                TransactionTypeConverters.convertTransactionType(source.transactionType)
             )
 
 
         fun transformToTransactionDetailsEntity(
-            editTransactionRequestDataModel: EditTransactionRequestDataModel
+            source: EditTransactionRequestDataModel
         ) =
             TransactionDetailsEntity(
-                editTransactionRequestDataModel.transactionId,
-                editTransactionRequestDataModel.assetsName,
-                editTransactionRequestDataModel.quantity,
-                editTransactionRequestDataModel.price,
-                editTransactionRequestDataModel.priceCurrency,
-                editTransactionRequestDataModel.date,
-                AssetTypeConverters.convertAssetType(editTransactionRequestDataModel.assetType),
-                TransactionTypeConverters.convertTransactionType(editTransactionRequestDataModel.transactionType)
+                source.transactionId,
+                source.assetsName,
+                source.quantity,
+                source.price,
+                source.priceCurrency,
+                source.date,
+                AssetTypeConverters.convertAssetType(source.assetType),
+                TransactionTypeConverters.convertTransactionType(source.transactionType)
+            )
+
+        fun transformCurrenciesToListOfCurrencyEntity(source: List<SelectionListResultDataModel>): List<CurrencyEntity> {
+            val result = ArrayList<CurrencyEntity>(0)
+            if (!source.isNullOrEmpty()) {
+                for (item in source) {
+                    result.add(
+                        transformToCurrencyEntity(item)
+                    )
+                }
+            }
+            return result
+        }
+
+        private fun transformToCurrencyEntity(source: SelectionListResultDataModel) =
+            CurrencyEntity(
+                source.name,
+                source.description
             )
 
     }

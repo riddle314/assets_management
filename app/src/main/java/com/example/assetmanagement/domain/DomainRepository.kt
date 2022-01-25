@@ -15,4 +15,11 @@ interface DomainRepository {
     suspend fun editTransaction(editTransactionRequestDomainModel: EditTransactionRequestDomainModel): ResponseDomainModel<String?>
 
     suspend fun deleteTransaction(transactionId: Int): ResponseDomainModel<String?>
+
+    suspend fun getAllSearchItems(searchTypeDomain: SearchTypeDomain): ResponseDomainModel<List<SelectionListResultDomainModel>>
+
+    suspend fun getSearchItemsForQuery(
+        query: String,
+        searchTypeDomain: SearchTypeDomain
+    ): ResponseDomainModel<List<SelectionListResultDomainModel>>
 }

@@ -3,30 +3,34 @@ package com.example.assetmanagement.usecases.transactions_activity.add_transacti
 import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
+import com.example.assetmanagement.usecases.common.model.AssetTypeModel
 import com.example.assetmanagement.usecases.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AssetModel
 
 class AddTransactionDataTransformer {
 
     companion object {
 
-        fun transformToResponse(transactionDetailsResponseDomainModel: TransactionDetailsResponseDomainModel) =
-            AddTransactionModel(
-                transactionDetailsResponseDomainModel.transactionId,
-                transactionDetailsResponseDomainModel.assetsName,
-                transactionDetailsResponseDomainModel.quantity.toString(),
-                transactionDetailsResponseDomainModel.price.toString(),
-                transactionDetailsResponseDomainModel.priceCurrency,
-                transactionDetailsResponseDomainModel.date,
-                DataTransformers.transformAssetType(transactionDetailsResponseDomainModel.assetType),
-                DataTransformers.transformTransactionType(transactionDetailsResponseDomainModel.transactionType)
+        fun transformToResponse(source: TransactionDetailsResponseDomainModel): AddTransactionModel {
+            val assetType: AssetTypeModel = DataTransformers.transformAssetType(source.assetType)
+            return AddTransactionModel(
+                source.transactionId,
+                AssetModel(source.assetsName, assetType),
+                source.quantity.toString(),
+                source.price.toString(),
+                source.priceCurrency,
+                source.date,
+                assetType,
+                DataTransformers.transformTransactionType(source.transactionType)
             )
+        }
+
 
         fun transformToEditRequest(addTransactionModel: AddTransactionModel) =
             EditTransactionRequestDomainModel(
                 addTransactionModel.transactionId,
-                addTransactionModel.assetsName,
+                addTransactionModel.assetModel.assetName,
                 addTransactionModel.quantity.toDouble(),
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,
@@ -37,7 +41,7 @@ class AddTransactionDataTransformer {
 
         fun transformToAddRequest(addTransactionModel: AddTransactionModel) =
             AddTransactionRequestDomainModel(
-                addTransactionModel.assetsName,
+                addTransactionModel.assetModel.assetName,
                 addTransactionModel.quantity.toDouble(),
                 addTransactionModel.price.toDouble(),
                 addTransactionModel.priceCurrency,

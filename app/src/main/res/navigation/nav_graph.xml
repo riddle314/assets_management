@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_AddTransactionFragment_to_TransactionsFragment"
             app:destination="@id/TransactionsFragment" />
+        <action
+            android:id="@+id/action_AddTransactionFragment_to_SelectionListFragment"
+            app:destination="@id/SelectionListFragment" />
     </fragment>
 
     <fragment
@@ -46,6 +49,16 @@
         <action
             android:id="@+id/action_TransactionDetailsFragment_to_TransactionsFragment"
             app:destination="@id/TransactionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SelectionListFragment"
+        android:name="com.example.assetmanagement.usecases.transactions_activity.selection_list.SelectionListFragment"
+        android:label="@string/search_list_title"
+        tools:layout="@layout/fragment_selection_list">
+        <argument
+            android:name="selectionListInputModel"
+            app:argType="com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SelectionListInputModel" />
     </fragment>
 
 </navigation>

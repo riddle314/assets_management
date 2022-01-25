@@ -1,4 +1,4 @@
-package com.example.repo.database.mechanism.transactions_table
+package com.example.repo.database.mechanism.tables
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

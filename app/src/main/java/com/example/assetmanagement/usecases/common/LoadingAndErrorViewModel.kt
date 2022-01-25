@@ -12,6 +12,8 @@ abstract class LoadingAndErrorViewModel : ViewModel(){
 
     // data for presentation
 
+    var isDataAlreadyLoaded: Boolean = false
+
     protected val mIsLoadingViewVisible: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
@@ -36,6 +38,16 @@ abstract class LoadingAndErrorViewModel : ViewModel(){
     // decision functions
 
     abstract fun errorViewClicked();
+
+    // function to load / fetch data only one time
+    fun firstTimeLoadData(){
+        if(!isDataAlreadyLoaded){
+            isDataAlreadyLoaded = true
+            loadData()
+        }
+    }
+
+    abstract fun loadData();
 
     // helper functions
 

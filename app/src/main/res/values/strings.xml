@@ -38,10 +38,16 @@
     <string name="sell">Sell</string>
     <string name="dividend">Dividend</string>
 
-    <string name="search_hint">Search Transactions</string>
+    <string name="search_transactions_hint">Search Transactions</string>
     <string name="cancel_add_transaction">Do you want to cancel the add of the transaction?</string>
     <string name="cancel_edit_transaction">Do you want to cancel the edit of the transaction?</string>
     <string name="for_keyword">for</string>
     <string name="date_label">Date:</string>
     <string name="asset_type_label">Asset Type:</string>
+
+    <string name="search_hint">Search</string>
+    <string name="search_list_title">Select Item</string>
+    <string name="select">Select</string>
+    <string name="asset">Asset</string>
+    <string name="price_currency">Price Currency</string>
 </resources>

@@ -12,7 +12,10 @@ import com.example.assetmanagement.usecases.common.model.AssetTypeModel
 import com.example.assetmanagement.usecases.common.model.Event
 import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AddTransactionModel
+import com.example.assetmanagement.usecases.transactions_activity.add_transaction.model.AssetModel
 import com.example.assetmanagement.usecases.transactions_activity.add_transaction.transformers.AddTransactionDataTransformer
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SelectionListInputModel
+import com.example.assetmanagement.usecases.transactions_activity.selection_list.transformers.SearchTypeTransformers
 import com.example.assetmanagement.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,6 +28,8 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
 
     companion object {
         private const val DEFAULT_VALUE = -1
+        const val SELECT_CURRENCY_BUNDLE_KEY = "SELECT_CURRENCY_BUNDLE_KEY"
+        const val SELECT_ASSET_NAME_BUNDLE_KEY = "SELECT_ASSET_NAME_BUNDLE_KEY"
     }
 
     // data for presentation
@@ -43,13 +48,6 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
 
     val isTransactionFieldsVisible: LiveData<Boolean>
         get() = mIsTransactionFieldsVisible
-
-    private val mDateOfTransaction: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
-    }
-
-    val dateOfTransaction: LiveData<String>
-        get() = mDateOfTransaction
 
     // data for navigation
 
@@ -74,19 +72,27 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
     val openDatePickerDialog: LiveData<Event<Long>>
         get() = mOpenDatePickerDialog
 
-    // lamda function to decide the action after the error clicked
-    private lateinit var onErrorClickedActionLamdaFun: () -> Unit
+    private val mOpenSelectionList: MutableLiveData<Event<SelectionListInputModel>> by lazy {
+        MutableLiveData<Event<SelectionListInputModel>>()
+    }
+
+    val openSelectionList: LiveData<Event<SelectionListInputModel>>
+        get() = mOpenSelectionList
+
+    // lambda function to decide the action after the error clicked
+    private lateinit var onErrorClickedActionLambdaFun: () -> Unit
 
     // decision functions
 
-    fun loadData() {
+    override fun loadData() {
         if (isEditTransaction()) {
             // fetch transaction info for edit
             fetchTransactionInfo(transactionId)
         } else {
             // create an empty Transaction model and set the default day to today
-            mAddTransactionModel.value = AddTransactionModel(transactionId)
-            updateDate(Calendar.getInstance().timeInMillis)
+            mAddTransactionModel.value = AddTransactionModel(transactionId).apply {
+                date = Calendar.getInstance().timeInMillis
+            }
             setContentState()
         }
     }
@@ -107,16 +113,15 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
             setContentState()
             mAddTransactionModel.value =
                 AddTransactionDataTransformer.transformToResponse(result.responseData!!)
-            updateDate(mAddTransactionModel.value!!.date)
         } else {
-            onErrorClickedActionLamdaFun = { fetchTransactionInfo(transactionId) }
+            onErrorClickedActionLambdaFun = { fetchTransactionInfo(transactionId) }
             setErrorState()
             mErrorMessage.value = result.errorMessage
         }
     }
 
     override fun errorViewClicked() {
-        onErrorClickedActionLamdaFun.invoke()
+        onErrorClickedActionLambdaFun.invoke()
     }
 
     fun isEditTransaction(): Boolean {
@@ -148,7 +153,8 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
 
     private fun isDataValid(addTransactionModel: AddTransactionModel?): Boolean {
         return addTransactionModel != null
-                && addTransactionModel.assetsName.isNotEmpty()
+                && addTransactionModel.assetModel.assetName.isNotEmpty()
+                && addTransactionModel.assetModel.assetType == addTransactionModel.assetType
                 && addTransactionModel.quantity.isNotEmpty()
                 && addTransactionModel.price.isNotEmpty()
                 && addTransactionModel.priceCurrency.isNotEmpty()
@@ -161,7 +167,7 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
             setContentState()
             mNavigateToTransactions.value = Event(true)
         } else {
-            onErrorClickedActionLamdaFun = { saveTransaction() }
+            onErrorClickedActionLambdaFun = { saveTransaction() }
             setErrorState()
             mErrorMessage.value = result.errorMessage
         }
@@ -171,6 +177,81 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
         mAddTransactionModel.value?.let {
             mOpenDatePickerDialog.value = Event(it.date)
         }
+    }
+
+    fun openAssetNameSelectionList(assetType: AssetTypeModel) {
+        mOpenSelectionList.value = Event(
+            SelectionListInputModel(
+                SELECT_ASSET_NAME_BUNDLE_KEY,
+                SearchTypeTransformers.transformToSearchTypeModel(assetType)
+            )
+        )
+    }
+
+    fun openCurrencySelectionList(assetType: AssetTypeModel) {
+        mOpenSelectionList.value = Event(
+            SelectionListInputModel(
+                SELECT_CURRENCY_BUNDLE_KEY,
+                SearchTypeTransformers.transformToSearchTypeModel(assetType)
+            )
+        )
+    }
+
+    fun getAssetTypeListOfValues(context: Context): List<String> {
+        return AssetTypeModel.listOfStringValues(context)
+    }
+
+    fun getTransactionTypeListOfValues(context: Context): List<String> {
+        return TransactionTypeModel.listOfStringValues(context)
+    }
+
+    fun updateDate(milliseconds: Long) {
+        mAddTransactionModel.value?.let {
+            mAddTransactionModel.value = copyAddTransactionModel(it).apply {
+                this.date = milliseconds
+            }
+        }
+    }
+
+    fun updateCurrency(currency: String) {
+        mAddTransactionModel.value?.let {
+            it.priceCurrency = currency
+        }
+    }
+
+    fun updateAssetName(assetModel: AssetModel) {
+        mAddTransactionModel.value?.let {
+            it.assetModel = assetModel
+        }
+    }
+
+    fun getAssetTypePosition(assetType: AssetTypeModel?): Int {
+        return AssetTypeModel.getPosition(assetType)
+    }
+
+    fun updateAssetType(position: Int) {
+        mAddTransactionModel.value?.let {
+            mAddTransactionModel.value = copyAddTransactionModel(it).apply {
+                assetType = AssetTypeModel.getAssetTypeModel(position)
+                if (assetModel.assetType != assetType) {
+                    assetModel = AssetModel(Utils.EMPTY_STRING, it.assetType)
+                }
+            }
+        }
+    }
+
+    // a function to copy AddTransactionModel to a new object
+    private fun copyAddTransactionModel(source: AddTransactionModel): AddTransactionModel {
+        return AddTransactionModel(
+            source.transactionId,
+            source.assetModel,
+            source.quantity,
+            source.price,
+            source.priceCurrency,
+            source.date,
+            source.assetType,
+            source.transactionType
+        )
     }
 
     private fun setLoadingState() {
@@ -189,20 +270,5 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
         mIsTransactionFieldsVisible.value = true
         mIsLoadingViewVisible.value = false
         mIsErrorViewVisible.value = false
-    }
-
-    fun getAssetTypeListOfValues(context: Context): List<String> {
-        return AssetTypeModel.listOfStringValues(context)
-    }
-
-    fun getTransactionTypeListOfValues(context: Context): List<String> {
-        return TransactionTypeModel.listOfStringValues(context)
-    }
-
-    fun updateDate(milliseconds: Long) {
-        mAddTransactionModel.value?.let {
-            it.date = milliseconds
-            mDateOfTransaction.value = Utils.getDateToString(milliseconds)
-        }
     }
 }

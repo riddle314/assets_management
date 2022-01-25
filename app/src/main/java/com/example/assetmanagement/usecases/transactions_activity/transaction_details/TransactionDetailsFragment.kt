@@ -17,6 +17,9 @@ import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
 import com.example.assetmanagement.usecases.common.model.Event
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * An fragment to see the details of a transaction
+ */
 @AndroidEntryPoint
 class TransactionDetailsFragment : Fragment(R.layout.transaction_details_fragment) {
 
@@ -62,8 +65,8 @@ class TransactionDetailsFragment : Fragment(R.layout.transaction_details_fragmen
 
         setupListenersAndObservers()
 
-        // fetch data
-        viewModel.fetchTransactionDetails()
+        // load data
+        viewModel.firstTimeLoadData()
     }
 
     private fun setupListenersAndObservers() {

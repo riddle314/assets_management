@@ -33,7 +33,7 @@ class TransactionsAdapter(
     }
 
     inner class TransactionItemViewHolder(
-        val viewHolderBinding: TransactionItemViewBinding,
+        private val viewHolderBinding: TransactionItemViewBinding,
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 

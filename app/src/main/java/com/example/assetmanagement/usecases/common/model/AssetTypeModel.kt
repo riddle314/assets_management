@@ -2,9 +2,6 @@ package com.example.assetmanagement.usecases.common.model
 
 import android.content.Context
 import com.example.assetmanagement.R
-import androidx.databinding.InverseMethod
-
-
 
 
 enum class AssetTypeModel {
@@ -27,14 +24,11 @@ enum class AssetTypeModel {
             return listOfNames
         }
 
-        @InverseMethod("toAssetTypeModel")
-        @JvmStatic
-        fun toPosition(assetTypeModel: AssetTypeModel?): Int {
+        fun getPosition(assetTypeModel: AssetTypeModel?): Int {
             return assetTypeModel?.ordinal ?: 0
         }
 
-        @JvmStatic
-        fun toAssetTypeModel(position: Int): AssetTypeModel {
+        fun getAssetTypeModel(position: Int): AssetTypeModel {
             return AssetTypeModel.values()[position]
         }
     }

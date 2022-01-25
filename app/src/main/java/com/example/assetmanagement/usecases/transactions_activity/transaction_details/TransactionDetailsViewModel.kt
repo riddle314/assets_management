@@ -21,7 +21,7 @@ class TransactionDetailsViewModel @Inject constructor(private var repository: Do
     // data for presentation
 
     // the transaction Id we need to identify the transaction details
-    var transactionId: Int = 0
+    var transactionId: Int = -1
 
     private val mTransactionDetails: MutableLiveData<TransactionDetailsModel> by lazy {
         MutableLiveData<TransactionDetailsModel>()
@@ -47,6 +47,10 @@ class TransactionDetailsViewModel @Inject constructor(private var repository: Do
         get() = mNavigateToTransactions
 
     // decision functions
+
+    override fun loadData() {
+        fetchTransactionDetails()
+    }
 
     fun fetchTransactionDetails() {
         setLoadingState()

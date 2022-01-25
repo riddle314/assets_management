@@ -33,141 +33,258 @@
             app:layout_constraintTop_toTopOf="parent"
             bind:viewModel="@{viewModel}" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_height="@dimen/zero_dimen"
             android:visibility="@{viewModel.isTransactionFieldsVisible() ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/asset_name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/large_padding"
-                android:layout_marginEnd="@dimen/large_padding"
-                android:ems="10"
-                android:hint="@string/asset_name"
-                android:minHeight="@dimen/field_min_height"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
-                android:text="@={viewModel.addTransactionModel.assetsName}"
-                tools:text="Bitcoin" />
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/asset_type_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/field_min_height"
-                android:padding="@dimen/large_padding"
-                android:selectedItemPosition="@={AssetTypeModel.toPosition(viewModel.addTransactionModel.assetType)}" />
-
-            <EditText
-                android:id="@+id/quantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/large_padding"
-                android:layout_marginEnd="@dimen/large_padding"
-                android:ems="10"
-                android:hint="@string/quantity"
-                android:inputType="numberDecimal"
-                android:minHeight="@dimen/field_min_height"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
-                android:text="@={viewModel.addTransactionModel.quantity}"
-                tools:text="0.02" />
-
-            <EditText
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/large_padding"
-                android:layout_marginEnd="@dimen/large_padding"
-                android:ems="10"
-                android:hint="@string/price"
-                android:inputType="numberDecimal"
-                android:minHeight="@dimen/field_min_height"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
-                android:text="@={viewModel.addTransactionModel.price}"
-                tools:text="200" />
-
-            <EditText
-                android:id="@+id/currency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/large_padding"
-                android:layout_marginEnd="@dimen/large_padding"
-                android:ems="10"
-                android:hint="@string/currency"
-                android:minHeight="@dimen/field_min_height"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
-                android:text="@={viewModel.addTransactionModel.priceCurrency}"
-                tools:text="EUR" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/date_button_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/field_min_height"
-                android:onClick="@{()-> viewModel.openDatePicker()}"
-                android:paddingStart="@dimen/large_padding"
-                android:paddingEnd="@dimen/large_padding">
-
-                <TextView
-                    android:id="@+id/date_label"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/asset_name_button_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/large_padding"
-                    android:paddingBottom="@dimen/large_padding"
-                    android:text="@string/date"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:minHeight="@dimen/field_min_height"
+                    android:onClick="@{()-> viewModel.openAssetNameSelectionList(viewModel.addTransactionModel.assetType)}"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
 
-                <TextView
-                    android:id="@+id/date_value"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/asset_name_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/large_padding"
+                        android:paddingBottom="@dimen/large_padding"
+                        android:text="@string/asset"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/asset_name_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/small_padding"
+                        android:layout_toEndOf="@id/asset_name_label"
+                        android:text="@{viewModel.addTransactionModel.assetModel.assetName}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/asset_name_button_indicator"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Bitcoin" />
+
+                    <ImageView
+                        android:id="@+id/asset_name_button_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/arrow_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/asset_type_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/small_padding"
-                    android:layout_toEndOf="@id/date_label"
-                    android:text='@{viewModel.dateOfTransaction}'
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_indicator"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="10/4/2021" />
+                    android:minHeight="@dimen/field_min_height"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
 
-                <ImageView
-                    android:id="@+id/button_indicator"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/asset_type_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/large_padding"
+                        android:paddingBottom="@dimen/large_padding"
+                        android:text="@string/asset_type"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Spinner
+                        android:id="@+id/asset_type_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:selectedItemPosition="@{viewModel.getAssetTypePosition(viewModel.addTransactionModel.assetType)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/quantity_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/arrow_right" />
+                    android:minHeight="@dimen/small_padding"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/quantity"
+                        android:inputType="numberDecimal"
+                        android:text="@={viewModel.addTransactionModel.quantity}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/transaction_type_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/field_min_height"
-                android:padding="@dimen/large_padding"
-                android:selectedItemPosition="@={TransactionTypeModel.toPosition(viewModel.addTransactionModel.transactionType)}" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/price_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/small_padding"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/large_padding"
-                android:minHeight="@dimen/field_min_height"
-                android:onClick="@{()-> viewModel.saveTransaction()}"
-                android:text="@{viewModel.editTransaction ? @string/update : @string/save}" />
-        </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/price"
+                        android:inputType="numberDecimal"
+                        android:text="@={viewModel.addTransactionModel.price}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/currency_button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/field_min_height"
+                    android:onClick="@{()-> viewModel.openCurrencySelectionList(AssetTypeModel.CURRENCY)}"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
+
+                    <TextView
+                        android:id="@+id/currency_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/large_padding"
+                        android:paddingBottom="@dimen/large_padding"
+                        android:text="@string/price_currency"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/currency_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/small_padding"
+                        android:layout_toEndOf="@id/currency_label"
+                        android:text='@{viewModel.addTransactionModel.priceCurrency}'
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/currency_button_indicator"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="EUR" />
+
+                    <ImageView
+                        android:id="@+id/currency_button_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/arrow_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/date_button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/field_min_height"
+                    android:onClick="@{()-> viewModel.openDatePicker()}"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
+
+                    <TextView
+                        android:id="@+id/date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/large_padding"
+                        android:paddingBottom="@dimen/large_padding"
+                        android:text="@string/date"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/date_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/small_padding"
+                        android:layout_toEndOf="@id/date_label"
+                        android:text='@{Utils.getDateToString(viewModel.addTransactionModel.date)}'
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/date_button_indicator"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="10/4/2021" />
+
+                    <ImageView
+                        android:id="@+id/date_button_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/arrow_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/transaction_type_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/field_min_height"
+                    android:paddingStart="@dimen/large_padding"
+                    android:paddingEnd="@dimen/large_padding">
+
+                    <TextView
+                        android:id="@+id/transaction_type_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/large_padding"
+                        android:paddingBottom="@dimen/large_padding"
+                        android:text="@string/transaction_type"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Spinner
+                        android:id="@+id/transaction_type_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:selectedItemPosition="@={TransactionTypeModel.toPosition(viewModel.addTransactionModel.transactionType)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/large_padding"
+                    android:minHeight="@dimen/field_min_height"
+                    android:onClick="@{()-> viewModel.saveTransaction()}"
+                    android:text="@{viewModel.editTransaction ? @string/update : @string/save}" />
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -62,6 +62,10 @@ class TransactionsViewModel @Inject constructor(private var repository: DomainRe
 
     // decision functions
 
+    override fun loadData() {
+        fetchTransactions()
+    }
+
     fun fetchTransactions() {
         // clear the search query
         mSearchQuery = Utils.EMPTY_STRING

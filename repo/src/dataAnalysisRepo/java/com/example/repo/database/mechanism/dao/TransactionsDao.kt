@@ -1,12 +1,13 @@
-package com.example.repo.database.mechanism.transactions_table
+package com.example.repo.database.mechanism.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.repo.database.mechanism.tables.TransactionDetailsEntity
 
 @Dao
-interface TransactionDetailsDao {
+interface TransactionsDao {
 
     @Query("SELECT * FROM transactions_table ORDER BY date DESC")
     fun getAllTransactions(): List<TransactionDetailsEntity>

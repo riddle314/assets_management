@@ -16,4 +16,10 @@ interface DatabaseService {
 
     fun editTransaction(editTransactionRequestDataModel: EditTransactionRequestDataModel): ResponseDataModel<String?>
 
+    fun getAllCurrencies(): ResponseDataModel<List<SelectionListResultDataModel>>
+
+    fun getCurrenciesForQuery(query: String): ResponseDataModel<List<SelectionListResultDataModel>>
+
+    fun insertAllCurrencies(currencies: List<SelectionListResultDataModel>): ResponseDataModel<String?>
+
 }

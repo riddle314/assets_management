@@ -35,27 +35,27 @@ class ConfirmationDialogFragment : DialogFragment() {
         }
     }
 
-    public fun setMessage(message: String) {
+    fun setMessage(message: String) {
         mMessage = message
     }
 
-    public fun setPositiveButton(positiveButtonMessage: String) {
+    fun setPositiveButton(positiveButtonMessage: String) {
         mPositiveButtonMessage = positiveButtonMessage
     }
 
-    public fun setNegativeButton(negativeButtonMessage: String) {
+    fun setNegativeButton(negativeButtonMessage: String) {
         mNegativeButtonMessage = negativeButtonMessage
     }
 
-    public fun setPositiveButtonListener(positiveButtonListener: PositiveListener) {
+    fun setPositiveButtonListener(positiveButtonListener: PositiveListener) {
         mPositiveButtonListener = positiveButtonListener
     }
 
-    public fun setNegativeButtonListener(negativeButtonListener: NegativeListener) {
+    fun setNegativeButtonListener(negativeButtonListener: NegativeListener) {
         mNegativeButtonListener = negativeButtonListener
     }
 
-    public fun hasNegativeButton(hasNegativeButton: Boolean) {
+    fun hasNegativeButton(hasNegativeButton: Boolean) {
         isNegativeButtonEnabled = hasNegativeButton
     }
 

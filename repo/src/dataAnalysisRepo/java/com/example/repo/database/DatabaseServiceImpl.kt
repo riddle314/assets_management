@@ -4,8 +4,8 @@ import android.content.Context
 import com.example.repo.R
 import com.example.repo.database.mechanism.AppDatabase
 import com.example.repo.model.*
-import com.example.repo.transformers.EntityToDataTransformers
 import com.example.repo.transformers.DataToEntityTransformers
+import com.example.repo.transformers.EntityToDataTransformers
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -65,7 +65,9 @@ class DatabaseServiceImpl @Inject constructor(@ApplicationContext private val co
     override fun addTransaction(addTransactionRequestDataModel: AddTransactionRequestDataModel): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().addTransaction(
-                DataToEntityTransformers.transformToTransactionDetailsEntity(addTransactionRequestDataModel)
+                DataToEntityTransformers.transformToTransactionDetailsEntity(
+                    addTransactionRequestDataModel
+                )
             )
             ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
@@ -76,7 +78,9 @@ class DatabaseServiceImpl @Inject constructor(@ApplicationContext private val co
     override fun editTransaction(editTransactionRequestDataModel: EditTransactionRequestDataModel): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().editTransaction(
-                DataToEntityTransformers.transformToTransactionDetailsEntity(editTransactionRequestDataModel)
+                DataToEntityTransformers.transformToTransactionDetailsEntity(
+                    editTransactionRequestDataModel
+                )
             )
             ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
@@ -87,6 +91,43 @@ class DatabaseServiceImpl @Inject constructor(@ApplicationContext private val co
     override fun deleteTransaction(transactionId: Int): ResponseDataModel<String?> {
         return try {
             database.transactionDetailsDao().deleteTransaction(transactionId)
+            ResponseDataModel(context.getString(R.string.success), true, null)
+        } catch (e: Exception) {
+            ResponseDataModel(null, false, getError(e, context))
+        }
+    }
+
+    override fun getAllCurrencies(): ResponseDataModel<List<SelectionListResultDataModel>> {
+        return try {
+            val result =
+                EntityToDataTransformers.transformCurrenciesToListOfSelectionListResultDataModel(
+                    database.currenciesDao().getAllCurrencies()
+                )
+            ResponseDataModel(result, true, null)
+        } catch (e: Exception) {
+            ResponseDataModel(ArrayList(0), false, getError(e, context))
+        }
+    }
+
+    override fun getCurrenciesForQuery(query: String): ResponseDataModel<List<SelectionListResultDataModel>> {
+        return try {
+            val result =
+                EntityToDataTransformers.transformCurrenciesToListOfSelectionListResultDataModel(
+                    database.currenciesDao().getCurrenciesForQuery(query)
+                )
+            ResponseDataModel(result, true, null)
+        } catch (e: Exception) {
+            ResponseDataModel(ArrayList(0), false, getError(e, context))
+        }
+    }
+
+    override fun insertAllCurrencies(currencies: List<SelectionListResultDataModel>): ResponseDataModel<String?> {
+        return try {
+            database.currenciesDao().insertAllCurrencies(
+                DataToEntityTransformers.transformCurrenciesToListOfCurrencyEntity(
+                    currencies
+                )
+            )
             ResponseDataModel(context.getString(R.string.success), true, null)
         } catch (e: Exception) {
             ResponseDataModel(null, false, getError(e, context))

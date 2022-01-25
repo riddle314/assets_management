@@ -24,6 +24,10 @@ object Versions {
     const val LIFECYCLE_VIEWMODEL_KTX = "2.4.0"
     const val LEGACY_SUPPORT_V4 = "1.0.0"
     const val DATABINDING_COMPILER = "3.1.4"
+    const val GSON = "2.8.7"
+    const val RETROFIT = "2.9.0"
+    const val RETROFIT_CONVERTER_GSON = "2.9.0"
+    const val LOGGING_INTERCEPTOR = "4.9.0"
 }
 
 object GradlePlugins {
@@ -71,6 +75,12 @@ object Libraries {
     const val LEGACY_SUPPORT_V4 = "androidx.legacy:legacy-support-v4:${Versions.LEGACY_SUPPORT_V4}"
     const val DATABINDING_COMPILER =
         "com.android.databinding:compiler:${Versions.DATABINDING_COMPILER}"
+    const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
+    const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
+    const val RETROFIT_CONVERTER_GSON =
+        "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT_CONVERTER_GSON}"
+    const val LOGGING_INTERCEPTOR =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR}"
 }
 
 object FlavorDimensions {

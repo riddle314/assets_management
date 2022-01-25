@@ -69,4 +69,9 @@ dependencies {
 
     implementation(Libraries.ROOM_RUNTIME)
     kapt(Libraries.ROOM_COMPILER)
+
+    implementation(Libraries.GSON)
+    implementation(Libraries.RETROFIT)
+    implementation(Libraries.RETROFIT_CONVERTER_GSON)
+    implementation(Libraries.LOGGING_INTERCEPTOR)
 }

@@ -48,8 +48,8 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
         setupListenersAndObservers()
 
-        // fetch the data
-        viewModel.fetchTransactions()
+        // load data
+        viewModel.firstTimeLoadData()
     }
 
     private fun setupListenersAndObservers() {
@@ -59,15 +59,12 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         val onQueryTextListener: android.widget.SearchView.OnQueryTextListener =
             object : android.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    // fetch the data for specific query
-                    viewModel.fetchTransactionsForSearchQuery(query ?: Utils.EMPTY_STRING)
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    if (newText.isNullOrBlank()) {
-                        viewModel.fetchTransactions()
-                    }
+                    // fetch the data for specific query
+                    viewModel.fetchTransactionsForSearchQuery(newText ?: Utils.EMPTY_STRING)
                     return false
                 }
             }
