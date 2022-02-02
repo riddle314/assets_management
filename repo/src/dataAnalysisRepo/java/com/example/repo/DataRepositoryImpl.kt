@@ -34,7 +34,9 @@ class DataRepositoryImpl @Inject constructor(@ApplicationContext context: Contex
 
     private var networkService: NetworkService = entryPoint.getNetworkService()
 
-    private var currenciesAreAlreadedLoaded: Boolean = false
+    // the DataRepository is provided as singleton per Application context,
+    // so as long the app running the boolean below is cached.
+    private var currenciesAreAlreadyLoaded: Boolean = false
 
 //    private var analysisService: AnalysisService
 
@@ -79,12 +81,12 @@ class DataRepositoryImpl @Inject constructor(@ApplicationContext context: Contex
         return changeExecutionThread(Dispatchers.IO) {
             // if we have already make the rest call for the currencies, while the app is running,
             // then we just retrieve them from the database
-            if (!currenciesAreAlreadedLoaded) {
+            if (!currenciesAreAlreadyLoaded) {
                 val restResponse = networkService.getAllCurrencies()
                 if (restResponse.isSuccess) {
                     val databaseResponse =
                         dataBaseService.insertAllCurrencies(restResponse.responseData)
-                    currenciesAreAlreadedLoaded = databaseResponse.isSuccess
+                    currenciesAreAlreadyLoaded = databaseResponse.isSuccess
                     restResponse.isSuccess = databaseResponse.isSuccess
                     restResponse.errorMessage = databaseResponse.errorMessage
                 }

@@ -96,8 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/field_min_height"
-                    android:paddingStart="@dimen/large_padding"
-                    android:paddingEnd="@dimen/large_padding">
+                    android:paddingStart="@dimen/large_padding">
 
                     <TextView
                         android:id="@+id/asset_type_label"
@@ -251,8 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/field_min_height"
-                    android:paddingStart="@dimen/large_padding"
-                    android:paddingEnd="@dimen/large_padding">
+                    android:paddingStart="@dimen/large_padding">
 
                     <TextView
                         android:id="@+id/transaction_type_label"

@@ -66,7 +66,7 @@ class TransactionsViewModel @Inject constructor(private var repository: DomainRe
         fetchTransactions()
     }
 
-    fun fetchTransactions() {
+    private fun fetchTransactions() {
         // clear the search query
         mSearchQuery = Utils.EMPTY_STRING
         fetchTransactionsForSearchQuery(mSearchQuery)
