@@ -3,6 +3,12 @@
     <string name="database_name" translatable="false">AssetManagementDatabase.db</string>
     <bool name="is_demo_enabled">false</bool>
     <integer name="demo_time_delay_ms">2000</integer>
+
+    <!--Amdoren service-->
+    <string name="api_Key">api_key</string>
     <string name="amdoren_base_url">https://www.amdoren.com/</string>
     <string name="amdoren_api_key">r9DGStW2swqLFKVN8ASKXCnw6UbDUL</string>
+
+    <!--OpenExchangeRates service-->
+    <string name="open_exchange_rates_base_url">https://openexchangerates.org/</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.repo.network.mechanism.model
+package com.example.repo.network.mechanism.apiServices.amdoren.model
 
 import com.google.gson.annotations.SerializedName
 
