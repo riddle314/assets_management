@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.assetmanagement.usecases.transactions_activity.selection_list.SelectionListViewModel" />
+            type="com.example.assetmanagement.usecases.transactionsActivity.selectionList.SelectionListViewModel" />
 
         <variable
             name="position"

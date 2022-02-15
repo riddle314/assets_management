@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AssetManagement">
         <activity
-            android:name="com.example.assetmanagement.usecases.transactions_activity.TransactionsActivity"
+            android:name="com.example.assetmanagement.usecases.transactionsActivity.TransactionsActivity"
             android:exported="true"
             android:label="@string/title_activity_transactions"
             android:theme="@style/Theme.AssetManagement">
@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".usecases.MainActivity" />
     </application>
 
 </manifest>

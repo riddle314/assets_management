@@ -10,13 +10,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.assetmanagement.usecases.transactions_activity.transactions.TransactionsViewModel" />
+            type="com.example.assetmanagement.usecases.transactionsActivity.transactions.TransactionsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".usecases.transactions_activity.transactions.TransactionsFragment">
+        tools:context=".usecases.transactionsActivity.transactions.TransactionsFragment">
 
         <SearchView
             android:id="@+id/searchView"

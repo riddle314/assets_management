@@ -16,13 +16,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.assetmanagement.usecases.transactions_activity.add_transaction.AddTransactionViewModel" />
+            type="com.example.assetmanagement.usecases.transactionsActivity.addTransaction.AddTransactionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".usecases.transactions_activity.add_transaction.AddTransactionFragment">
+        tools:context=".usecases.transactionsActivity.addTransaction.AddTransactionFragment">
 
         <include
             android:id="@+id/loadingAndErrorLayout"
@@ -135,7 +135,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/quantity"
-                        android:inputType="numberDecimal"
                         android:text="@={viewModel.addTransactionModel.quantity}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,7 +152,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/price"
-                        android:inputType="numberDecimal"
                         android:text="@={viewModel.addTransactionModel.price}" />
                 </com.google.android.material.textfield.TextInputLayout>
 

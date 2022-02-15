@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/TransactionsFragment"
-        android:name="com.example.assetmanagement.usecases.transactions_activity.transactions.TransactionsFragment"
+        android:name="com.example.assetmanagement.usecases.transactionsActivity.transactions.TransactionsFragment"
         android:label="@string/transactions_title"
         tools:layout="@layout/fragment_transactions">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/AddTransactionFragment"
-        android:name="com.example.assetmanagement.usecases.transactions_activity.add_transaction.AddTransactionFragment"
+        android:name="com.example.assetmanagement.usecases.transactionsActivity.addTransaction.AddTransactionFragment"
         android:label="@string/add_transaction_title"
         tools:layout="@layout/fragment_add_transaction">
         <argument
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/TransactionDetailsFragment"
-        android:name="com.example.assetmanagement.usecases.transactions_activity.transaction_details.TransactionDetailsFragment"
+        android:name="com.example.assetmanagement.usecases.transactionsActivity.transactionDetails.TransactionDetailsFragment"
         android:label="@string/transaction_details_title"
         tools:layout="@layout/transaction_details_fragment">
         <argument
@@ -53,12 +53,12 @@
 
     <fragment
         android:id="@+id/SelectionListFragment"
-        android:name="com.example.assetmanagement.usecases.transactions_activity.selection_list.SelectionListFragment"
+        android:name="com.example.assetmanagement.usecases.transactionsActivity.selectionList.SelectionListFragment"
         android:label="@string/search_list_title"
         tools:layout="@layout/fragment_selection_list">
         <argument
             android:name="selectionListInputModel"
-            app:argType="com.example.assetmanagement.usecases.transactions_activity.selection_list.model.SelectionListInputModel" />
+            app:argType="com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SelectionListInputModel" />
     </fragment>
 
 </navigation>
