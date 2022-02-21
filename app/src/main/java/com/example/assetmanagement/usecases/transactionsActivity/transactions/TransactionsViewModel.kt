@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.assetmanagement.domain.DomainRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
-import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
-import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.transactions.model.TransactionItemModel
 import com.example.assetmanagement.usecases.transactionsActivity.transactions.transformers.TransactionsDataTransformer
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -89,7 +89,6 @@ class TransactionsViewModel @Inject constructor(private var repository: DomainRe
     private fun transactionsResponse(
         result: ResponseDomainModel<List<TransactionItemResponseDomainModel>>
     ) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess) {
             mTransactionsList.value =
                 TransactionsDataTransformer.transform(result.responseData)

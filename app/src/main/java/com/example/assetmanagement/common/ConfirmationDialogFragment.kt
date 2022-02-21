@@ -1,11 +1,10 @@
-package com.example.assetmanagement.usecases.common
+package com.example.assetmanagement.common
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.example.assetmanagement.utils.Utils
 
 class ConfirmationDialogFragment : DialogFragment() {
 

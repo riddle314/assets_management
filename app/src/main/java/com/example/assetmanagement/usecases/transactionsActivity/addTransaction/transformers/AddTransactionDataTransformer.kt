@@ -3,11 +3,11 @@ package com.example.assetmanagement.usecases.transactionsActivity.addTransaction
 import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.usecases.common.model.AssetTypeModel
-import com.example.assetmanagement.usecases.common.transformers.DataTransformers
+import com.example.assetmanagement.common.model.AssetTypeModel
+import com.example.assetmanagement.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AddTransactionModel
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AssetModel
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 
 class AddTransactionDataTransformer {
 

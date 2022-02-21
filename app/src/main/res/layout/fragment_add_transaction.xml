@@ -8,11 +8,11 @@
 
         <import type="android.view.View" />
 
-        <import type="com.example.assetmanagement.utils.Utils" />
+        <import type="com.example.assetmanagement.common.Utils" />
 
-        <import type="com.example.assetmanagement.usecases.common.model.AssetTypeModel" />
+        <import type="com.example.assetmanagement.common.model.AssetTypeModel" />
 
-        <import type="com.example.assetmanagement.usecases.common.model.TransactionTypeModel" />
+        <import type="com.example.assetmanagement.common.model.TransactionTypeModel" />
 
         <variable
             name="viewModel"

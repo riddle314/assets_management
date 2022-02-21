@@ -1,9 +1,9 @@
-package com.example.assetmanagement.usecases.common.transformers
+package com.example.assetmanagement.common.transformers
 
 import com.example.assetmanagement.domain.model.AssetTypeDomain
 import com.example.assetmanagement.domain.model.TransactionTypeDomain
-import com.example.assetmanagement.usecases.common.model.AssetTypeModel
-import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
+import com.example.assetmanagement.common.model.AssetTypeModel
+import com.example.assetmanagement.common.model.TransactionTypeModel
 
 class DataTransformers {
 

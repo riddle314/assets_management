@@ -2,7 +2,7 @@ package com.example.assetmanagement.usecases.transactionsActivity.selectionList.
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 
 data class SelectionListInputModel(
     val requestBundleKey: String,

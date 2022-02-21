@@ -7,16 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.assetmanagement.domain.DomainRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
-import com.example.assetmanagement.usecases.common.model.AssetTypeModel
-import com.example.assetmanagement.usecases.common.model.Event
-import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
+import com.example.assetmanagement.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.common.model.AssetTypeModel
+import com.example.assetmanagement.common.model.Event
+import com.example.assetmanagement.common.model.TransactionTypeModel
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AddTransactionModel
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AssetModel
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.transformers.AddTransactionDataTransformer
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SelectionListInputModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.transformers.SearchTypeTransformers
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
@@ -79,7 +79,7 @@ class AddTransactionViewModel @Inject constructor(private var repository: Domain
     val openSelectionList: LiveData<Event<SelectionListInputModel>>
         get() = mOpenSelectionList
 
-    // lambda function to decide the action after the error clicked
+    // lambda function to decide the action when the error clicked
     private lateinit var onErrorClickedActionLambdaFun: () -> Unit
 
     // decision functions

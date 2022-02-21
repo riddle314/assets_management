@@ -11,7 +11,7 @@ import com.example.repo.model.TransactionItemResponseDataModel
 import javax.inject.Inject
 
 class DomainRepositoryImpl @Inject constructor(
-    var dataRepository: DataRepository
+    private val dataRepository: DataRepository
 ) : DomainRepository {
 
     override suspend fun getAllTransactions(): ResponseDomainModel<List<TransactionItemResponseDomainModel>> {

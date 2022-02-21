@@ -2,7 +2,6 @@ package com.example.assetmanagement.usecases.transactionsActivity.transactions
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -10,10 +9,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentTransactionsBinding
-import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.transactions.adapters.TransactionsAdapter
 import com.example.assetmanagement.usecases.transactionsActivity.transactions.model.TransactionItemModel
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -97,11 +96,6 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
             viewLifecycleOwner,
             navigateToTransactionDetailsObserver
         )
-
-        // Handle the back button and up button event
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
-            //empty callback for back press
-        }
 
     }
 

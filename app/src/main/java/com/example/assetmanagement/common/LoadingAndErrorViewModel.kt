@@ -1,9 +1,8 @@
-package com.example.assetmanagement.usecases.common
+package com.example.assetmanagement.common
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.assetmanagement.utils.Utils
 
 /**
  * This is a ViewModel to use when we want to add loading and error layout logic

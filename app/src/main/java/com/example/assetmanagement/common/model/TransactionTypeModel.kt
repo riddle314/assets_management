@@ -1,4 +1,4 @@
-package com.example.assetmanagement.usecases.common.model
+package com.example.assetmanagement.common.model
 
 import android.content.Context
 import androidx.databinding.InverseMethod

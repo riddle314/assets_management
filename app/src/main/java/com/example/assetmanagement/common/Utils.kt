@@ -1,4 +1,4 @@
-package com.example.assetmanagement.utils
+package com.example.assetmanagement.common
 
 import java.text.DateFormat
 import java.util.*

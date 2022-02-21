@@ -1,7 +1,7 @@
 package com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model
 
-import com.example.assetmanagement.usecases.common.model.AssetTypeModel
-import com.example.assetmanagement.usecases.common.model.TransactionTypeModel
+import com.example.assetmanagement.common.model.AssetTypeModel
+import com.example.assetmanagement.common.model.TransactionTypeModel
 
 class AddTransactionModel(var transactionId: Int) {
     var assetModel: AssetModel = AssetModel("", AssetTypeModel.CURRENCY)

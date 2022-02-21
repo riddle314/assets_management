@@ -18,9 +18,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentAddTransactionBinding
-import com.example.assetmanagement.usecases.common.ConfirmationDialogFragment
-import com.example.assetmanagement.usecases.common.model.AssetTypeModel
-import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.common.ConfirmationDialogFragment
+import com.example.assetmanagement.common.model.AssetTypeModel
+import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AssetModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.SelectionListFragment
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SearchTypeModel

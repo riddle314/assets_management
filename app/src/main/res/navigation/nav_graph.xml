@@ -29,7 +29,9 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_AddTransactionFragment_to_TransactionsFragment"
-            app:destination="@id/TransactionsFragment" />
+            app:destination="@id/TransactionsFragment"
+            app:popUpTo="@+id/TransactionsFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_AddTransactionFragment_to_SelectionListFragment"
             app:destination="@id/SelectionListFragment" />
@@ -48,7 +50,9 @@
             app:destination="@id/AddTransactionFragment" />
         <action
             android:id="@+id/action_TransactionDetailsFragment_to_TransactionsFragment"
-            app:destination="@id/TransactionsFragment" />
+            app:destination="@id/TransactionsFragment"
+            app:popUpTo="@+id/TransactionsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.assetmanagement.domain.DomainRepository
 import com.example.assetmanagement.domain.model.ResponseDomainModel
 import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
-import com.example.assetmanagement.usecases.common.LoadingAndErrorViewModel
-import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.transactionDetails.model.TransactionDetailsModel
 import com.example.assetmanagement.usecases.transactionsActivity.transactionDetails.transformers.TransactionsDetailsDataTransformer
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -10,10 +10,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assetmanagement.R
 import com.example.assetmanagement.databinding.FragmentSelectionListBinding
-import com.example.assetmanagement.usecases.common.model.Event
+import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.adapters.SelectionListAdapter
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SelectionListResultModel
-import com.example.assetmanagement.utils.Utils
+import com.example.assetmanagement.common.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
