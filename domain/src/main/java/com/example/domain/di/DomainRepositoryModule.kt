@@ -1,7 +1,7 @@
-package com.example.assetmanagement.domain.di
+package com.example.domain.di
 
-import com.example.assetmanagement.domain.DomainRepository
-import com.example.assetmanagement.domain.DomainRepositoryImpl
+import com.example.domain.DomainRepository
+import com.example.domain.DomainRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,2 +1,2 @@
-include(":app",":repo")
+include(":app", ":domain", ":repo")
 rootProject.name = "Asset Management"

@@ -3,9 +3,9 @@ package com.example.assetmanagement.usecases.transactionsActivity.transactions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.assetmanagement.domain.DomainRepository
-import com.example.assetmanagement.domain.model.ResponseDomainModel
-import com.example.assetmanagement.domain.model.TransactionItemResponseDomainModel
+import com.example.domain.DomainRepository
+import com.example.domain.model.ResponseDomainModel
+import com.example.domain.model.TransactionItemResponseDomainModel
 import com.example.assetmanagement.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.transactions.model.TransactionItemModel

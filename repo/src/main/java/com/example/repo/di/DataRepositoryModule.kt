@@ -1,7 +1,7 @@
 package com.example.repo.di
 
 import android.content.Context
-import com.example.repo.DataRepository
+import com.example.domain.DataRepository
 import com.example.repo.DataRepositoryImpl
 import com.example.repo.R
 import com.example.repo.demo.DataRepositoryDemoImpl

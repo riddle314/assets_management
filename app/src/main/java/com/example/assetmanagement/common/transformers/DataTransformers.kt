@@ -1,7 +1,7 @@
 package com.example.assetmanagement.common.transformers
 
-import com.example.assetmanagement.domain.model.AssetTypeDomain
-import com.example.assetmanagement.domain.model.TransactionTypeDomain
+import com.example.domain.model.AssetTypeDomain
+import com.example.domain.model.TransactionTypeDomain
 import com.example.assetmanagement.common.model.AssetTypeModel
 import com.example.assetmanagement.common.model.TransactionTypeModel
 

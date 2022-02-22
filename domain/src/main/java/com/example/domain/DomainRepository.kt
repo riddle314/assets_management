@@ -1,6 +1,6 @@
-package com.example.assetmanagement.domain
+package com.example.domain
 
-import com.example.assetmanagement.domain.model.*
+import com.example.domain.model.*
 
 interface DomainRepository {
 

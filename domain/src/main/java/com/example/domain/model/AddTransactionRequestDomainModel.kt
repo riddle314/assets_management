@@ -1,10 +1,6 @@
-package com.example.assetmanagement.domain.model
+package com.example.domain.model
 
-/**
- * A data class for the domain type of transaction item
- */
-data class TransactionItemResponseDomainModel(
-    val transactionId: Int,
+data class AddTransactionRequestDomainModel(
     val assetsName: String,
     val quantity: Double,
     val price: Double,

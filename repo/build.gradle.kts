@@ -26,10 +26,12 @@ android {
     productFlavors {
         create(ProductFlavors.DATA_ANALYSIS_REPO) {
             dimension = FlavorDimensions.DEFAULT_DIMENSION
+            matchingFallbacks += listOf(ProductFlavors.DEFAULT_FLAVOR)
         }
 
         create(ProductFlavors.REST_REPO) {
             dimension = FlavorDimensions.DEFAULT_DIMENSION
+            matchingFallbacks += listOf(ProductFlavors.DEFAULT_FLAVOR)
         }
     }
 
@@ -74,4 +76,7 @@ dependencies {
     implementation(Libraries.RETROFIT)
     implementation(Libraries.RETROFIT_CONVERTER_GSON)
     implementation(Libraries.LOGGING_INTERCEPTOR)
+
+    // add the domain module
+    implementation(project(Modules.DOMAIN))
 }

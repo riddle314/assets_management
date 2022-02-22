@@ -1,4 +1,4 @@
-package com.example.assetmanagement.domain.model
+package com.example.domain.model
 
 data class SelectionListResultDomainModel(
     val name: String,

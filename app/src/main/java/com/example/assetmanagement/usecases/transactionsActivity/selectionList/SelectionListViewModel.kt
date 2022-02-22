@@ -3,9 +3,9 @@ package com.example.assetmanagement.usecases.transactionsActivity.selectionList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.assetmanagement.domain.DomainRepository
-import com.example.assetmanagement.domain.model.ResponseDomainModel
-import com.example.assetmanagement.domain.model.SelectionListResultDomainModel
+import com.example.domain.DomainRepository
+import com.example.domain.model.ResponseDomainModel
+import com.example.domain.model.SelectionListResultDomainModel
 import com.example.assetmanagement.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SearchTypeModel
@@ -87,7 +87,6 @@ class SelectionListViewModel @Inject constructor(private var repository: DomainR
     private fun listItemsResponse(
         result: ResponseDomainModel<List<SelectionListResultDomainModel>>
     ) {
-        mIsLoadingViewVisible.value = false
         if (result.isSuccess) {
             mItemsList.value =
                 SelectionListResultDataTransformers.transform(result.responseData)

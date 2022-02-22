@@ -96,4 +96,5 @@ object ProductFlavors {
 object Modules {
     const val APP = ":app"
     const val REPO = ":repo"
+    const val DOMAIN = ":domain"
 }

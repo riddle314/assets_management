@@ -1,4 +1,4 @@
-package com.example.assetmanagement.domain.model
+package com.example.domain.model
 
 enum class AssetTypeDomain {
     CURRENCY, STOCK, CRYPTO;

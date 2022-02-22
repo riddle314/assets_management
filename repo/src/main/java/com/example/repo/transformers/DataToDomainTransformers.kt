@@ -1,7 +1,7 @@
-package com.example.assetmanagement.domain.transformers
+package com.example.repo.transformers
 
 
-import com.example.assetmanagement.domain.model.*
+import com.example.domain.model.*
 import com.example.repo.model.*
 
 class DataToDomainTransformers {
@@ -65,22 +65,24 @@ class DataToDomainTransformers {
             }
         }
 
-        fun selectionListResultListTransformer(searchType: SearchTypeDomain, source: List<SelectionListResultDataModel>)
-                : List<SelectionListResultDomainModel> {
-            val output: ArrayList<SelectionListResultDomainModel> = arrayListOf()
+        fun selectionListResultListTransformer(
+            source: List<SelectionListResultDataModel>
+        ): List<SelectionListResponseDomainModel> {
+            val output: ArrayList<SelectionListResponseDomainModel> = arrayListOf()
             if (!source.isNullOrEmpty()) {
                 for (item in source) {
-                    output.add(selectionListResultTransformer(searchType, item))
+                    output.add(selectionListResultTransformer(item))
                 }
             }
             return output
         }
 
-        private fun  selectionListResultTransformer(searchTypeDomain: SearchTypeDomain, source: SelectionListResultDataModel): SelectionListResultDomainModel {
-            return SelectionListResultDomainModel(
+        private fun selectionListResultTransformer(
+            source: SelectionListResultDataModel
+        ): SelectionListResponseDomainModel {
+            return SelectionListResponseDomainModel(
                 source.name,
-                source.description,
-                searchTypeDomain
+                source.description
             )
         }
     }

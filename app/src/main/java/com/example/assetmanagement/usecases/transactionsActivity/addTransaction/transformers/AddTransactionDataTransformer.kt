@@ -1,8 +1,8 @@
 package com.example.assetmanagement.usecases.transactionsActivity.addTransaction.transformers
 
-import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
-import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
-import com.example.assetmanagement.domain.model.TransactionDetailsResponseDomainModel
+import com.example.domain.model.AddTransactionRequestDomainModel
+import com.example.domain.model.EditTransactionRequestDomainModel
+import com.example.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.common.model.AssetTypeModel
 import com.example.assetmanagement.common.transformers.DataTransformers
 import com.example.assetmanagement.usecases.transactionsActivity.addTransaction.model.AddTransactionModel

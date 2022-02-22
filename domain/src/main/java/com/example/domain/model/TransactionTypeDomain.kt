@@ -1,4 +1,4 @@
-package com.example.assetmanagement.domain.model
+package com.example.domain.model
 
 enum class TransactionTypeDomain {
     BUY, SELL, DIVIDEND;

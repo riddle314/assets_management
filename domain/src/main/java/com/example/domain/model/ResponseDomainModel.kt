@@ -1,4 +1,4 @@
-package com.example.assetmanagement.domain.model
+package com.example.domain.model
 
 /**
  * Data class to encapsulate the domain response from an async call

@@ -1,7 +1,7 @@
 package com.example.assetmanagement.usecases.transactionsActivity.selectionList.transformers
 
-import com.example.assetmanagement.domain.model.SearchTypeDomain
-import com.example.assetmanagement.domain.model.SelectionListResultDomainModel
+import com.example.domain.model.SearchTypeDomain
+import com.example.domain.model.SelectionListResultDomainModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SearchTypeModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SelectionListResultModel
 

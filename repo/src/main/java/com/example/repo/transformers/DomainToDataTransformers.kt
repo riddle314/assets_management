@@ -1,9 +1,9 @@
-package com.example.assetmanagement.domain.transformers
+package com.example.repo.transformers
 
-import com.example.assetmanagement.domain.model.AddTransactionRequestDomainModel
-import com.example.assetmanagement.domain.model.AssetTypeDomain
-import com.example.assetmanagement.domain.model.EditTransactionRequestDomainModel
-import com.example.assetmanagement.domain.model.TransactionTypeDomain
+import com.example.domain.model.AddTransactionRequestDomainModel
+import com.example.domain.model.AssetTypeDomain
+import com.example.domain.model.EditTransactionRequestDomainModel
+import com.example.domain.model.TransactionTypeDomain
 import com.example.repo.model.AddTransactionRequestDataModel
 import com.example.repo.model.AssetTypeData
 import com.example.repo.model.EditTransactionRequestDataModel

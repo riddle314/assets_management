@@ -5,7 +5,7 @@ import com.example.repo.model.*
 class TestData {
     companion object {
 
-        fun getTranscationsTestData(): ArrayList<TransactionItemResponseDataModel> {
+        fun getTransactionsTestData(): ArrayList<TransactionItemResponseDataModel> {
             val transactions = ArrayList<TransactionItemResponseDataModel>()
             transactions.add(
                 TransactionItemResponseDataModel(
@@ -227,11 +227,11 @@ class TestData {
         }
 
         fun getTransactionsTestDataForSearchQuery(query: String): List<TransactionItemResponseDataModel> {
-            return searchListOfTransactionItemResponseDataModel(query, getTranscationsTestData())
+            return searchListOfTransactionItemResponseDataModel(query, getTransactionsTestData())
         }
 
         fun getTransactionDetailsTestData(transactionId: Int): TransactionDetailsResponseDataModel {
-            val data = getTranscationsTestData()
+            val data = getTransactionsTestData()
             if (!data.isNullOrEmpty()) {
                 for (transactionItem in data) {
                     if (transactionId.equals(transactionItem.transactionId)) {
