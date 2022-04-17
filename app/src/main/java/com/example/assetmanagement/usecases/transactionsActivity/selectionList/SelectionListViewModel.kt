@@ -3,16 +3,16 @@ package com.example.assetmanagement.usecases.transactionsActivity.selectionList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.domain.DomainRepository
-import com.example.domain.model.ResponseDomainModel
-import com.example.domain.model.SelectionListResultDomainModel
 import com.example.assetmanagement.common.LoadingAndErrorViewModel
+import com.example.assetmanagement.common.Utils
 import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SearchTypeModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.model.SelectionListResultModel
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.transformers.SearchTypeTransformers
 import com.example.assetmanagement.usecases.transactionsActivity.selectionList.transformers.SelectionListResultDataTransformers
-import com.example.assetmanagement.common.Utils
+import com.example.domain.DomainRepository
+import com.example.domain.model.ResponseDomainModel
+import com.example.domain.model.SelectionListResultDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,25 +27,21 @@ class SelectionListViewModel @Inject constructor(private var repository: DomainR
 
     // data for presentation
 
-    private val mItemsList: MutableLiveData<List<SelectionListResultModel>> by lazy {
+    private val mItemsList: MutableLiveData<List<SelectionListResultModel>> =
         MutableLiveData<List<SelectionListResultModel>>()
-    }
 
     val itemsList: LiveData<List<SelectionListResultModel>>
         get() = mItemsList
 
-    private val mIsItemsListVisible: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
+    private val mIsItemsListVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val isItemsListVisible: LiveData<Boolean>
         get() = mIsItemsListVisible
 
     // data for navigation
 
-    private val mReturnSelectionEvent: MutableLiveData<Event<SelectionListResultModel>> by lazy {
+    private val mReturnSelectionEvent: MutableLiveData<Event<SelectionListResultModel>> =
         MutableLiveData<Event<SelectionListResultModel>>()
-    }
 
     val returnSelectionEvent: LiveData<Event<SelectionListResultModel>>
         get() = mReturnSelectionEvent

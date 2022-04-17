@@ -32,6 +32,7 @@ class NetworkServiceImpl @Inject constructor(@ApplicationContext private val con
     }
 
     private fun getAllCurrenciesFromAmdorenService(): ResponseDataModel<List<SelectionListResultDataModel>> {
+        // make the call to the same thread
         val response: Response<CurrenciesAPI> = amdorenService.getAllCurrencies().execute()
         val body = response.body()
         return if (response.isSuccessful && body != null
@@ -57,6 +58,7 @@ class NetworkServiceImpl @Inject constructor(@ApplicationContext private val con
     }
 
     private fun getAllCurrenciesFromOpenExchangeRatesService(): ResponseDataModel<List<SelectionListResultDataModel>> {
+        // make the call to the same thread
         val response: Response<Map<String, String>> =
             openExchangeRatesService.getAllCurrencies().execute()
         val body = response.body()

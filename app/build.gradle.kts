@@ -4,6 +4,7 @@ plugins {
     id(GradlePlugins.KOTLIN_KAPT)
     id(GradlePlugins.NAVIGATION_SAFEARGS_KOTLIN)
     id(GradlePlugins.HILT_ANDROID_PLUGIN)
+    id(GradlePlugins.KOTLIN_PARCELIZE)
 }
 
 android {

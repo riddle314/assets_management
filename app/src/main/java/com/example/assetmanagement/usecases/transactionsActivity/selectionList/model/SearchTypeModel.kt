@@ -8,8 +8,8 @@ enum class SearchTypeModel() {
 
     // get the name of the type
     fun getName(context: Context): String = when (this) {
-        SearchTypeModel.CURRENCY -> context.getString(R.string.currency)
-        SearchTypeModel.STOCK -> context.getString(R.string.stock)
-        SearchTypeModel.CRYPTO -> context.getString(R.string.crypto)
+        CURRENCY -> context.getString(R.string.currency)
+        STOCK -> context.getString(R.string.stock)
+        CRYPTO -> context.getString(R.string.crypto)
     }
 }

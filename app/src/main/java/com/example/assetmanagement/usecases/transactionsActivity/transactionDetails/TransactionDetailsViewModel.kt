@@ -3,13 +3,13 @@ package com.example.assetmanagement.usecases.transactionsActivity.transactionDet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.domain.DomainRepository
-import com.example.domain.model.ResponseDomainModel
-import com.example.domain.model.TransactionDetailsResponseDomainModel
 import com.example.assetmanagement.common.LoadingAndErrorViewModel
 import com.example.assetmanagement.common.model.Event
 import com.example.assetmanagement.usecases.transactionsActivity.transactionDetails.model.TransactionDetailsModel
 import com.example.assetmanagement.usecases.transactionsActivity.transactionDetails.transformers.TransactionsDetailsDataTransformer
+import com.example.domain.DomainRepository
+import com.example.domain.model.ResponseDomainModel
+import com.example.domain.model.TransactionDetailsResponseDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,25 +23,20 @@ class TransactionDetailsViewModel @Inject constructor(private var repository: Do
     // the transaction Id we need to identify the transaction details
     var transactionId: Int = -1
 
-    private val mTransactionDetails: MutableLiveData<TransactionDetailsModel> by lazy {
+    private val mTransactionDetails: MutableLiveData<TransactionDetailsModel> =
         MutableLiveData<TransactionDetailsModel>()
-    }
 
     val transactionDetails: LiveData<TransactionDetailsModel>
         get() = mTransactionDetails
 
-    private val mIsTransactionDetailsVisible: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
+    private val mIsTransactionDetailsVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val isTransactionDetailsVisible: LiveData<Boolean>
         get() = mIsTransactionDetailsVisible
 
     // data for navigation
 
-    private val mNavigateToTransactions: MutableLiveData<Event<Boolean>> by lazy {
-        MutableLiveData<Event<Boolean>>()
-    }
+    private val mNavigateToTransactions: MutableLiveData<Event<Boolean>> = MutableLiveData<Event<Boolean>>()
 
     val navigateToTransactions: LiveData<Event<Boolean>>
         get() = mNavigateToTransactions
@@ -52,7 +47,7 @@ class TransactionDetailsViewModel @Inject constructor(private var repository: Do
         fetchTransactionDetails()
     }
 
-    fun fetchTransactionDetails() {
+    private fun fetchTransactionDetails() {
         setLoadingState()
         clearErrorMessage()
         viewModelScope.launch {

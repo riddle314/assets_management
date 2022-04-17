@@ -37,6 +37,7 @@ object GradlePlugins {
     const val KOTLIN_KAPT = "kotlin-kapt"
     const val HILT_ANDROID_PLUGIN = "dagger.hilt.android.plugin"
     const val NAVIGATION_SAFEARGS_KOTLIN = "androidx.navigation.safeargs.kotlin"
+    const val KOTLIN_PARCELIZE = "kotlin-parcelize"
 }
 
 object GradleLibraries {

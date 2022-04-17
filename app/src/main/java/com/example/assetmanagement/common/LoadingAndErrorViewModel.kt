@@ -7,29 +7,23 @@ import androidx.lifecycle.ViewModel
 /**
  * This is a ViewModel to use when we want to add loading and error layout logic
  */
-abstract class LoadingAndErrorViewModel : ViewModel(){
+abstract class LoadingAndErrorViewModel : ViewModel() {
 
     // data for presentation
 
     var isDataAlreadyLoaded: Boolean = false
 
-    protected val mIsLoadingViewVisible: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
+    protected val mIsLoadingViewVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val isLoadingViewVisible: LiveData<Boolean>
         get() = mIsLoadingViewVisible
 
-    protected val mIsErrorViewVisible: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
+    protected val mIsErrorViewVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val isErrorViewVisible: LiveData<Boolean>
         get() = mIsErrorViewVisible
 
-    protected val mErrorMessage: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
-    }
+    protected val mErrorMessage: MutableLiveData<String> = MutableLiveData<String>()
 
     val errorMessage: LiveData<String>
         get() = mErrorMessage
@@ -39,8 +33,8 @@ abstract class LoadingAndErrorViewModel : ViewModel(){
     abstract fun errorViewClicked();
 
     // function to load / fetch data only one time
-    fun firstTimeLoadData(){
-        if(!isDataAlreadyLoaded){
+    fun firstTimeLoadData() {
+        if (!isDataAlreadyLoaded) {
             isDataAlreadyLoaded = true
             loadData()
         }
